@@ -28,8 +28,9 @@
             android:layout_toRightOf="@id/month"
             android:layout_below="@id/user_name"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="23dp"
             android:layout_marginTop="10dp"
-            android:text="英国是个可爱的国家"
+            android:text="英国是个可爱的国家英国是个可爱的国家英国是个可爱的国家英国是个可爱的国家英国是个可爱的国家"
             android:textSize="18dp"/>
         <ImageView
             android:id="@+id/picture"
@@ -39,14 +40,14 @@
             android:layout_below="@id/text"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:background="@mipmap/England"/>
+            android:background="@mipmap/england"/>
         <TextView
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/picture"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="23dp"
             android:text="23:55"
             android:textSize="16dp"/>
     </RelativeLayout>
