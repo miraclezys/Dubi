@@ -13,8 +13,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:textSize="20dp"
-                android:textColor="#ff4466"
-                android:text="UserName2"
+                android:textColor="#0c2cae"
+                android:text="Yathing"
                 android:id="@+id/other_name"/>
             <TextView
                 android:layout_width="wrap_content"

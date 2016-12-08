@@ -1,13 +1,15 @@
-package cc.wo_mo.dubi;
+package cc.wo_mo.dubi.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class UDataActivity extends AppCompatActivity {
+import cc.wo_mo.dubi.R;
+
+public class SearchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_udata);
+        setContentView(R.layout.activity_search);
     }
 }

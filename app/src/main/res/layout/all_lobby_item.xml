@@ -1,39 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Page4. 微博消息的详情页面-->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.MsgDetailActivity">
-    <!--Part1 标题栏-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/detail1"
-        android:background="#fff556">
-        <ImageButton
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@mipmap/back"
-            android:background="#fff888"
-            android:id="@+id/backbtn"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/backbtn"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:textSize="20dp"
-            android:textColor="#ffffff"
-            android:text="微博详情"/>
-    </RelativeLayout>
-
-    <!-- Part2 微博信息部分-->
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/detail1"
-        android:id="@+id/detail2">
+        android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/head_pic"
             android:layout_width="60dp"
@@ -88,25 +59,4 @@
             android:text="23:55"
             android:textSize="16dp"/>
     </RelativeLayout>
-
-    <!--Part3：评论与点赞部分-->
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/detail2"
-        android:background="#eaeaea"
-        android:id="@+id/detail3">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="评论"
-            android:id="@+id/com_btn"/>
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/com_btn"
-            android:id="@+id/com_list">
-        </ListView>
-    </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>

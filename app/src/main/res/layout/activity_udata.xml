@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cc.wo_mo.dubi.UDataActivity"
+    tools:context=".activities.UDataActivity"
     android:weightSum="1">
     <!--Part1 用户部分-->
     <RelativeLayout
@@ -26,19 +26,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:textSize="40sp"
             android:textColor="#FFFFFF"
-            android:text="芭蕾小黄鸡"
+            android:text="Sunny"
             android:id="@+id/user_name"/>
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200px"
+            android:layout_height="200px"
             android:visibility="visible"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:src="@mipmap/pic1"
+            android:src="@mipmap/touxiang1"
             android:id="@+id/user_head"/>
     </RelativeLayout>
     <!--个人信息栏目-->
