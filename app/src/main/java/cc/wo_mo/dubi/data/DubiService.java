@@ -75,16 +75,16 @@ public interface DubiService {
     /*
     * Comment API
     * */
-    @POST("/tweet/{tweet_id}/windows_comment")
+    @POST("/tweet/{tweet_id}/comment")
     Call<Comment> createComment(@Path("tweet_id") int tweet_id, @Body Comment comment);
 
-    @GET("/tweet/{tweet_id}/windows_comment")
+    @GET("/tweet/{tweet_id}/comment")
     Call<List<Comment>> getComments(@Path("tweet_id") int tweet_id);
 
-    @GET("/windows_comment/{comment_id}")
+    @GET("/comment/{comment_id}")
     Call<Comment> getComment(@Path("comment_id") int comment_id);
 
-    @DELETE("/tweet/{tweet_id}/windows_comment/{comment_id}")
+    @DELETE("/tweet/{tweet_id}/comment/{comment_id}")
     Call<BaseResponse> deleteComment(@Path("tweet_id") int tweet_id,
                                      @Path("comment_id") int comment_id);
 
