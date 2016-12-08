@@ -14,7 +14,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
         </activity>
-        <activity android:name=".activities.MsgDetailActivity">
+        <activity android:name=".MsgDetailActivity">
         <activity android:name=".MYNotifyActivity" />
         <activity android:name=".UDataActivity" />
         <activity android:name=".SearchActivity" />
