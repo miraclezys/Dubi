@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--我的提醒消息界面-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cc.wo_mo.dubi.MYNotifyActivity">
+    <!--part1 标题栏-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/notify1"
+        android:background="#fff556">
+        <ImageButton
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/back"
+            android:background="#fff888"
+            android:id="@+id/backbtn"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/backbtn"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:text="我的消息提醒"/>
+    </RelativeLayout>
+
+    <!--part2 消息列表-->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/notify1"
+        android:id="@+id/notify2">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Notifylist">
+        </ListView>
+
+    </RelativeLayout>
+</RelativeLayout>

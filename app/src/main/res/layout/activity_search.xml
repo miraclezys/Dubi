@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cc.wo_mo.dubi.SearchActivity">
+    <!--Part1 标题栏-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff556"
+        android:id="@+id/search1">
+        <ImageButton
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/back"
+            android:background="#fff888"
+            android:id="@+id/backbtn"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/backbtn"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:text="搜索界面"/>
+    </RelativeLayout>
+    <!--Part2 搜索-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search1"
+        android:id="@+id/search2">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:typeface="serif"
+            android:textColor="#2f4f4f"
+            android:textSize="50dp"
+            android:text="Dubi"
+            android:id="@+id/text1"/>
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text1"
+            android:layout_centerHorizontal="true">
+            <TableRow>
+                <EditText
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/search_bar"/>
+                <ImageButton
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src=""
+                    android:id="@+id/search_btn"/>
+            </TableRow>
+        </TableLayout>
+    </RelativeLayout>
+    <!--Part3 查询结果-->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search2"
+        android:id="@+id/search3">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查询结果"
+            android:id="@+id/text2"/>
+        <View
+            android:layout_height="10dp"
+            android:layout_width="match_parent"
+            android:background="#1E000000"
+            android:layout_below="@+id/text2"
+            android:id="@+id/bar" />
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bar"
+            android:id="@+id/search_msg">
+        </ListView>
+    </RelativeLayout>
+
+
+</RelativeLayout>

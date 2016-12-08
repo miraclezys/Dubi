@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:textColor="#ff4466"
+                android:text="UserName2"
+                android:id="@+id/other_name"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:text=" :"
+                />
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:text="你语法有迭代错误,吓得我抱紧了抱着抱着抱着抱着我的小鲤鱼的我的我的我"
+                android:id="@+id/other_com"/>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

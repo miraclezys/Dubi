@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Page4. 微博消息的详情页面-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MsgDetailActivity">
+    <!--Part1 标题栏-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/detail1"
+        android:background="#fff556">
+        <ImageButton
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/back"
+            android:background="#fff888"
+            android:id="@+id/backbtn"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/backbtn"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:text="微博详情"/>
+    </RelativeLayout>
+
+    <!-- Part2 微博信息部分-->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/detail1"
+        android:id="@+id/detail2">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/pic1"
+            android:id="@+id/user_head" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/user_head"
+            android:textSize="25dp"
+            android:text="UserName"
+            android:id="@+id/user_name"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/user_head"
+            android:textSize="20dp"
+            android:text="  今天我好开心,你猜我告不告诉你我告不告诉你我告不告诉你我告不告诉你我告不告诉你我今天为什么这么开心"
+            android:id="@+id/cont_text"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@+id/cont_text"
+            android:src="@mipmap/pic2"
+            android:id="@+id/cont_pic"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cont_pic"
+            android:layout_alignParentRight="true"
+            android:text="2016/12/08 22:34"
+            android:id="@+id/time"/>
+    </RelativeLayout>
+
+    <!--Part3：评论与点赞部分-->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/detail2"
+        android:background="#eaeaea"
+        android:id="@+id/detail3">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="评论"
+            android:id="@+id/com_btn"/>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/com_btn"
+            android:id="@+id/com_list">
+        </ListView>
+    </RelativeLayout>
+</RelativeLayout>
