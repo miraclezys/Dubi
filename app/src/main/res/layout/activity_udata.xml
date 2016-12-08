@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:layout_weight="0.64"
         android:padding="15dp"
-        android:background="#fff888"
+        android:background="@mipmap/beijing2"
         android:id="@+id/data1">
         <ImageButton
             android:layout_width="wrap_content"
