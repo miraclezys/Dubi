@@ -41,6 +41,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
+            android:src="@drawable/select_photo"
+            android:id="@+id/select_photo"
+            android:layout_margin="10dp"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:src="@drawable/send_icon"
             android:id="@+id/send_button"
             android:layout_alignParentEnd="true"
