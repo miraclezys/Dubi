@@ -1,11 +1,14 @@
 package cc.wo_mo.dubi.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.io.IOException;
 
 import cc.wo_mo.dubi.R;
 import cc.wo_mo.dubi.data.ApiClient;
@@ -83,6 +86,9 @@ public class LoginActivity extends AppCompatActivity {
                                 showToast("Sign in success");
                                 ApiClient.token = res.token;
                                 ApiClient.user_id = res.user_id;
+                                Intent intent = new Intent();
+                                intent.setClass(LoginActivity.this, MainActivity.class);
+                                startActivity(intent);
                             }
                         }
 
@@ -97,6 +103,13 @@ public class LoginActivity extends AppCompatActivity {
                         public void onResponse(Call<BaseResponse> call,
                                                Response<BaseResponse> response) {
                             BaseResponse res = response.body();
+                            if (res == null)
+                                try {
+                                    res = ApiClient.gson.fromJson(response.errorBody().string(),
+                                            BaseResponse.class);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                             showToast(res.message);
                         }
 
