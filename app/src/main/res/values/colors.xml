@@ -6,4 +6,7 @@
     <color name="colorRed">#CB3B48</color>
     <color name="colorBlue">#292D7B</color>
     <color name="colorGray">#737373</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorToolBar">#d01716</color>
+    <color name="colorTab">#f36c60</color>
 </resources>

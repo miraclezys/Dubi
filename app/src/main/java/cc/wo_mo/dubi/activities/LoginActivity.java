@@ -1,5 +1,7 @@
 package cc.wo_mo.dubi.activities;
 
+import android.app.ActionBar;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +28,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText mUsername;
     EditText mPassword;
     EditText mConfirmPassword;
+    View mSignInView;
+    View mSignUpView;
     DubiService client = ApiClient.getClient();
     int state = SIGN_IN;
     @Override
@@ -37,12 +41,16 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void init() {
-        mSubmitButton = (Button) findViewById(R.id.submit);
-        mSignInButton = (Button) findViewById(R.id.sign_in);
-        mSignUpButton = (Button) findViewById(R.id.sign_up);
-        mUsername = (EditText) findViewById(R.id.name);
-        mPassword = (EditText) findViewById(R.id.password_one);
-        mConfirmPassword = (EditText) findViewById(R.id.password_two);
+        mSubmitButton = (Button) findViewById(R.id.submit_button);
+        mSignInButton = (Button) findViewById(R.id.sign_in_button);
+        mSignUpButton = (Button) findViewById(R.id.sign_up_button);
+        mUsername = (EditText) findViewById(R.id.name_edit);
+        mPassword = (EditText) findViewById(R.id.password_one_edit);
+        mConfirmPassword = (EditText) findViewById(R.id.password_two_edit);
+        mSignInView = (View) findViewById(R.id.in_view);
+        mSignUpView = (View) findViewById(R.id.up_view);
+        mSignInView.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        mSignUpView.setVisibility(View.INVISIBLE);
         mSignInButton.setTextColor(getResources().getColor(R.color.colorAccent));
         mConfirmPassword.setVisibility(View.GONE);
     }
@@ -53,6 +61,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mSignInButton.setTextColor(getResources().getColor(R.color.colorAccent));
                 mSignUpButton.setTextColor(getResources().getColor(R.color.colorGray));
+                mSignInView.setVisibility(View.VISIBLE);
+                mSignUpView.setVisibility(View.INVISIBLE);
+                mSignInView.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                 mConfirmPassword.setVisibility(View.GONE);
                 state = SIGN_IN;
             }
@@ -63,6 +74,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mSignInButton.setTextColor(getResources().getColor(R.color.colorGray));
                 mSignUpButton.setTextColor(getResources().getColor(R.color.colorAccent));
+                mSignInView.setVisibility(View.INVISIBLE);
+                mSignUpView.setVisibility(View.VISIBLE);
+                mSignUpView.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                 mConfirmPassword.setVisibility(View.VISIBLE);
                 state = SIGN_UP;
             }
