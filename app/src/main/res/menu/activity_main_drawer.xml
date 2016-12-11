@@ -2,20 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:title="Import" />
+            android:id="@+id/all_tweets"
+            android:icon="@mipmap/all_sweet"
+            android:title="全部动态" />
         <item
-            android:id="@+id/nav_gallery"
-            android:title="Gallery" />
+            android:id="@+id/friend_tweets"
+            android:icon="@mipmap/focus"
+            android:title="关注动态" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:title="Tools" />
+            android:id="@+id/my_tweets"
+            android:icon="@mipmap/me"
+            android:title="个人动态" />
     </group>
     <item
         android:id="@+id/nav_logout"
+        android:icon="@mipmap/logout"
         android:title="注销" />
 
 </menu>
