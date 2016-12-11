@@ -1,5 +1,7 @@
 package cc.wo_mo.dubi.activities;
 
+import android.content.Intent;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +21,7 @@ import retrofit2.Response;
 public class EditActivity extends AppCompatActivity {
     EditText mEditText;
     ImageButton mSendBtn;
+    ImageButton mSelectPhotoBtn;
     DubiService client = ApiClient.getClient();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class EditActivity extends AppCompatActivity {
         toolbar.setTitle("编辑");
         mEditText = (EditText)findViewById(R.id.edit_text);
         mSendBtn = (ImageButton)findViewById(R.id.send_button);
+        mSelectPhotoBtn = (ImageButton)findViewById(R.id.select_photo);
         mSendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +60,14 @@ public class EditActivity extends AppCompatActivity {
                         }
                     });
                 }
+            }
+        });
+        mSelectPhotoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
+                intent.setType("image/*");
+                startActivityForResult(intent, 0);
             }
         });
     }
