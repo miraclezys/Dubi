@@ -4,6 +4,8 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -40,24 +42,29 @@ public class MainActivity extends AppCompatActivity
         currentFragment = mBlankFragment;
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Resources resource=(Resources)getBaseContext().getResources();
+        ColorStateList csl=(ColorStateList)resource.getColorStateList(R.color.item_color);
+        navigationView.setItemTextColor(csl);
+        navigationView.setItemIconTintList(csl);
+        navigationView.getMenu().getItem(0).setChecked(true);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_gallery) {
+        if (id == R.id.all_tweets) {
             if (mBlankFragment == null) {
                 mBlankFragment = new BlankFragment();
             }
             switchFragment(currentFragment, mBlankFragment);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.friend_tweets) {
             if (mBlank1Fragment == null) {
                 mBlank1Fragment = new Blank1Fragment();
             }
             switchFragment(currentFragment, mBlank1Fragment);
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.my_tweets) {
 
         } else if (id == R.id.nav_logout) {
             client.logout().enqueue(new Callback<BaseResponse>() {
