@@ -5,12 +5,16 @@ import android.app.FragmentTransaction;
 import android.app.Fragment;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Toast;
 
 import cc.wo_mo.dubi.R;
@@ -27,19 +31,35 @@ public class MainActivity extends AppCompatActivity
     BlankFragment mBlankFragment;
     Blank1Fragment mBlank1Fragment;
     Fragment currentFragment;
+    FloatingActionButton mFab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mBlankFragment = new BlankFragment();
-        mBlank1Fragment = new Blank1Fragment();
 
+        mBlankFragment = new BlankFragment();
+        mFab = (FloatingActionButton) findViewById(R.id.edit_fab);
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, EditActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.replace(R.id.main_content, mBlankFragment).commit();
         currentFragment = mBlankFragment;
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 200) {
+            mBlankFragment.getData();
+        }
     }
 
     @Override
