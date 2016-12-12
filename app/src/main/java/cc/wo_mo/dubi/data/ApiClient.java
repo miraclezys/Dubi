@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ApiClient {
-    final static String BASE_URL = "http://wo-mo.cc:5000";
+    final static String BASE_URL = "http://dubi.wo-mo.cc";
     public static String token = "";
     public static int user_id = 0;
     private static DubiService instance = null;

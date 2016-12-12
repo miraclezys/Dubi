@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.io.IOException;
 import java.util.List;
 
 import cc.wo_mo.dubi.R;
@@ -56,20 +57,27 @@ public class BlankFragment extends Fragment {
 
     void getData() {
         mSwipeRefreshLayout.setRefreshing(true);
+        Log.d("header token", ApiClient.token);
         client.listAllTweets(-1, 100).enqueue(new Callback<List<Tweet>>() {
             @Override
             public void onResponse(Call<List<Tweet>> call, Response<List<Tweet>> response) {
+                mSwipeRefreshLayout.setRefreshing(false);
                 if (response.code() == 200) {
                     mAdapter.mData = response.body();
                     mAdapter.notifyDataSetChanged();
-                    mSwipeRefreshLayout.setRefreshing(false);
                     Log.d("tweet", ApiClient.gson.toJson(data));
+                } else {
+                    try {
+                        Log.d("error", response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<List<Tweet>> call, Throwable t) {
-
+                t.printStackTrace();
             }
         });
     }
