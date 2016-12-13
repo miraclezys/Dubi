@@ -3,6 +3,8 @@
     package="cc.wo_mo.dubi">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,10 +16,7 @@
             android:name=".activities.LoginActivity"
             android:windowSoftInputMode="adjustResize"
             android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".activities.MainActivity"
@@ -28,19 +27,20 @@
             android:windowSoftInputMode="adjustResize"></activity>
         <activity android:name=".activities.MYNotifyActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activities.UserInfoActivity"
             android:exported="true">
+        </activity>
+        <activity android:name=".activities.ImageActivity"></activity>
+        <activity android:name=".activities.FansActivty">
+
+        </activity>
+        <activity android:name=".activities.FriendsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ImageActivity"></activity>
     </application>
 
 </manifest>
