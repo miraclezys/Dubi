@@ -56,7 +56,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.MyViewHolder
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            userPhoto = (ImageView)itemView.findViewById(R.id.month);
+            userPhoto = (ImageView)itemView.findViewById(R.id.user_pic_img);
             username = (TextView)itemView.findViewById(R.id.user_name);
             time = (TextView)itemView.findViewById(R.id.time);
             text = (TextView)itemView.findViewById(R.id.text);

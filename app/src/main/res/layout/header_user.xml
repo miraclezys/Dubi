@@ -2,20 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="192dp"
+    android:paddingLeft="20dp"
     android:background="@mipmap/beijing5">
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:id="@+id/user_pic_img"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:background="@mipmap/touxiang1"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"/>
     <TextView
+        android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:textColor="@color/colorWhite"
         android:text="Sunny"
-        android:textSize="18dp"/>
+        android:textSize="20dp"/>
 
 </LinearLayout>
