@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/tweet_item"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="5dp"
+    app:cardElevation="3dp"
     android:clickable="true"
-    android:layout_marginTop="3dp"
-    android:layout_marginBottom="3dp">
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="8dp">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp">
         <ImageView
-            android:id="@+id/month"
+            android:id="@+id/user_pic_img"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:background="@mipmap/nine"/>
+            android:layout_marginLeft="16dp"
+            android:background="@mipmap/touxiang1"/>
         <TextView
             android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/month"
-            android:layout_alignTop="@id/month"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/user_pic_img"
+            android:layout_alignTop="@id/user_pic_img"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="5dp"
             android:text="sunny"
-            android:textStyle="bold"
+            android:textColor="@color/colorBlack"
             android:textSize="16dp"/>
         <TextView
             android:id="@+id/time"
@@ -39,26 +40,42 @@
             android:layout_alignLeft="@id/user_name"
             android:layout_marginTop="3dp"
             android:text="23:55"
-            android:textSize="14dp"/>
+            android:textSize="12dp"/>
         <TextView
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/time"
-            android:layout_alignLeft="@id/month"
-            android:layout_marginRight="23dp"
-            android:layout_marginTop="10dp"
+            android:layout_below="@id/user_pic_img"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
             android:text="英国是个可爱的国家英国是个可爱的国家英国是个可爱的国家英国是个可爱的国家英国是个可爱的国家"
-            android:textSize="14dp"/>
+            android:textSize="14dp"
+            android:textColor="@color/colorBlack"/>
         <ImageView
             android:id="@+id/picture"
-            android:layout_width="wrap_content"
-            android:layout_height="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/text"
-            android:layout_alignLeft="@id/month"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="23dp"
+            android:layout_marginTop="8dp"
             android:background="@mipmap/england"/>
-
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/picture"
+            android:background="@mipmap/delete2"/>
+        <Button
+            android:id="@+id/discuss_button"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignBottom="@id/delete"
+            android:layout_marginRight="16dp"
+            android:layout_toLeftOf="@id/delete"
+            android:background="@mipmap/discuss3"/>
     </RelativeLayout>
+
 </android.support.v7.widget.CardView>

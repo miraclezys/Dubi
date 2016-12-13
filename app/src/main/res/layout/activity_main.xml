@@ -40,6 +40,7 @@
             android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
             app:layout_behavior=""
+            app:srcCompat="@mipmap/pen"
             />
     </android.support.design.widget.CoordinatorLayout>
 

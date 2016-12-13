@@ -12,6 +12,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/tweet_item"
         tools:context="cc.wo_mo.dubi.TweetAdapter"/>
