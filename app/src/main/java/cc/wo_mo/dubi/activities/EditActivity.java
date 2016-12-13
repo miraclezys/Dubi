@@ -72,7 +72,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         mImage = (ImageView) findViewById(R.id.image);
         mImageLayout = (CoordinatorLayout) findViewById(R.id.image_layout);
         mCancelButton = (FloatingActionButton) findViewById(R.id.cancel_fab);
-//        mImageLayout.setVisibility(View.GONE);
+        mImageLayout.setVisibility(View.GONE);
         mImage.setOnClickListener(this);
         mCancelButton.setOnClickListener(this);
         mSendBtn.setOnClickListener(this);
