@@ -26,7 +26,7 @@ public class ApiClient {
     public static String token = "";
     public static int user_id = 0;
     private static DubiService instance = null;
-    public static OkHttpClient sHttpClient;
+    private static OkHttpClient sHttpClient = null;
     public static Gson gson = new GsonBuilder()
             .serializeNulls()
             .create();
@@ -34,34 +34,46 @@ public class ApiClient {
     public static DubiService getClient(Context context) {
         if (instance == null) {
             synchronized (ApiClient.class) {
-                File cacheDir = new File(context.getApplicationContext().getCacheDir(), PICASSO_CACHE);
-                if (!cacheDir.exists()) {
-                    cacheDir.mkdirs();
+                if (instance == null) {
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl(BASE_URL)
+                            .client(getsHttpClient(context))
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                    instance = retrofit.create(DubiService.class);
                 }
-                sHttpClient = new OkHttpClient.Builder()
-                        .addNetworkInterceptor(new Interceptor() {
-                            @Override
-                            public okhttp3.Response intercept(Chain chain) throws IOException {
-                                Request authRequest = chain.request().newBuilder()
-                                        .addHeader("Authorization", "Token "+token)
-                                        .build();
-                                return chain.proceed(authRequest);
-                            }
-                        })
-                        .cache(new Cache(cacheDir, MAX_DISK_CACHE_SIZE))
-                        .build();
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(BASE_URL)
-                        .client(sHttpClient)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                instance = retrofit.create(DubiService.class);
-                return instance;
             }
-        } else {
-            return instance;
         }
+        return instance;
     }
+
+    public static OkHttpClient getsHttpClient(Context context) {
+        if (sHttpClient == null) {
+            synchronized (ApiClient.class) {
+                if (sHttpClient == null) {
+                    File cacheDir = new File(context.getApplicationContext().getCacheDir(), PICASSO_CACHE);
+                    if (!cacheDir.exists()) {
+                        cacheDir.mkdirs();
+                    }
+                    sHttpClient = new OkHttpClient.Builder()
+                            .addNetworkInterceptor(new Interceptor() {
+                                @Override
+                                public okhttp3.Response intercept(Chain chain) throws IOException {
+                                    Request authRequest = chain.request().newBuilder()
+                                            .addHeader("Authorization", "Token " + token)
+                                            .build();
+                                    return chain.proceed(authRequest);
+                                }
+                            })
+                            .cache(new Cache(cacheDir, MAX_DISK_CACHE_SIZE))
+                            .build();
+                }
+            }
+        }
+        return sHttpClient;
+    }
+
+
 
     public static boolean isLogin() {
         return !"".equals(token);

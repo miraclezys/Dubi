@@ -10,6 +10,7 @@ import com.squareup.picasso.Picasso;
 
 import cc.wo_mo.dubi.R;
 import cc.wo_mo.dubi.data.ApiClient;
+import cc.wo_mo.dubi.utils.ImageUtils;
 
 public class ImageActivity extends AppCompatActivity {
 
@@ -19,8 +20,6 @@ public class ImageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_image);
         ImageView image = (ImageView) findViewById(R.id.image);
         Uri uri = getIntent().getData();
-        Picasso.Builder builder = new Picasso.Builder(this);
-        Picasso picasso = builder.downloader(new OkHttp3Downloader(ApiClient.sHttpClient)).build();
-        picasso.load(uri).into(image);
+        ImageUtils.with(this).load(uri).into(image);
     }
 }

@@ -26,8 +26,7 @@ import cc.wo_mo.dubi.data.Model.Tweet;
  * Created by shushu on 2016/12/13.
  */
 
-public class UserInfoActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class UserInfoActivity extends AppCompatActivity {
     SwipeRefreshLayout mSwipeRefreshLayout;
     RecyclerView mRecyclerView;
     LinearLayoutManager layoutManager;
@@ -47,18 +46,6 @@ public class UserInfoActivity extends AppCompatActivity
     }
 
     @Override
-    public void onBackPressed() {
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -67,11 +54,5 @@ public class UserInfoActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
 
-        return true;
-    }
 }
