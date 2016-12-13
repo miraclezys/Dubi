@@ -40,7 +40,7 @@ public class FriendsActivity extends AppCompatActivity {
             fansData.add(temp);
         }
         lv1 = (ListView) findViewById(R.id.Fanslist);
-        final SimpleAdapter simpleAdapter = new SimpleAdapter(this, fansData,R.layout.item_fans,
+        final SimpleAdapter simpleAdapter = new SimpleAdapter(this, fansData,R.layout.item_friends,
                 new String[] {"user_name"},new int[] {R.id.user_name} );
         lv1.setAdapter(simpleAdapter);
     }
