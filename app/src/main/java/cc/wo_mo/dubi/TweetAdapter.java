@@ -9,8 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jakewharton.picasso.OkHttp3Downloader;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
+import cc.wo_mo.dubi.data.ApiClient;
 import cc.wo_mo.dubi.data.Model.Tweet;
 
 /**
@@ -20,10 +25,14 @@ import cc.wo_mo.dubi.data.Model.Tweet;
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.MyViewHolder> {
 
     public List<Tweet> mData;
+    Picasso picasso;
     Context mContex;
     public TweetAdapter(Context context, List<Tweet> data) {
         mData = data;
         mContex = context;
+        Picasso.Builder builder = new Picasso.Builder(context);
+        picasso = builder.downloader(new OkHttp3Downloader(ApiClient.sHttpClient)).build();
+        picasso.setIndicatorsEnabled(true);
     }
 
     @Override
@@ -37,6 +46,12 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.MyViewHolder
         Tweet tweet = mData.get(position);
         holder.username.setText(tweet.user.username);
         holder.text.setText(tweet.description);
+        if (tweet.image_url != null) {
+            holder.picture.setVisibility(View.VISIBLE);
+            picasso.load(ApiClient.BASE_URL+tweet.image_url).fit().into(holder.picture);
+        } else {
+            holder.picture.setVisibility(View.GONE);
+        }
         // Todo: 加载图片，缓存
     }
 

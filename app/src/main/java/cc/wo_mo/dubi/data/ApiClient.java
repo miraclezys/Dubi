@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 
+import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -16,11 +17,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ApiClient {
-    final static String BASE_URL = "http://dubi.wo-mo.cc";
+    public final static String BASE_URL = "http://dubi.wo-mo.cc";
     public static String token = "";
     public static int user_id = 0;
     private static DubiService instance = null;
-    private static OkHttpClient sHttpClient = new OkHttpClient.Builder()
+    public static OkHttpClient sHttpClient = new OkHttpClient.Builder()
             .addNetworkInterceptor(new Interceptor() {
                 @Override
                 public okhttp3.Response intercept(Chain chain) throws IOException {

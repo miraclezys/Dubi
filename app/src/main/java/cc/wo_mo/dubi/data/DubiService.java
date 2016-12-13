@@ -4,6 +4,7 @@ import java.util.List;
 
 import cc.wo_mo.dubi.data.Model.*;
 import cc.wo_mo.dubi.data.Model.LoginResponse;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -111,6 +112,6 @@ public interface DubiService {
     * */
     @Multipart
     @POST("/image")
-    Call<BaseResponse> uploadImage(@Part("image") RequestBody image,
-                                   @Part("user_id") int user_id);
+    Call<UploadResponse> uploadImage(@Part MultipartBody.Part part,
+                                     @Part("user_id") int user_id);
 }
