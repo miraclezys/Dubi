@@ -22,59 +22,80 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:inputType="textMultiLine"
-        android:id="@+id/edit_text"
-        android:background="@null"
-        android:gravity="top"/>
-
-
-    <android.support.design.widget.CoordinatorLayout
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/image_layout">
-        <android.support.design.widget.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_gravity="end|top"
-            app:fabSize="mini"
-            android:src="@drawable/ic_action_name"
-            android:id="@+id/cancel_fab"
-            />
-        <ImageView
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/england"
-            android:padding="20dp"
-            android:adjustViewBounds="true"
-            android:id="@+id/image" />
-    </android.support.design.widget.CoordinatorLayout>
-
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:inputType="textMultiLine"
+            android:id="@+id/edit_text"
+            android:background="@null"
+            android:gravity="top"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <android.support.design.widget.CoordinatorLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/image_layout">
+                <android.support.design.widget.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="end|top"
+                    app:fabSize="mini"
+                    android:src="@drawable/ic_action_name"
+                    android:id="@+id/cancel_fab"
+                    />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/england"
+                    android:padding="20dp"
+                    android:adjustViewBounds="true"
+                    android:id="@+id/image" />
+            </android.support.design.widget.CoordinatorLayout>
+        </ScrollView>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="bottom">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_count"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:text="0/150"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:layout_below="@+id/text_count"
+            android:src="@drawable/send_icon"
+            android:id="@+id/send_button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:src="@drawable/select_photo"
+            android:layout_alignTop="@id/send_button"
             android:id="@+id/select_photo"
-            android:layout_margin="10dp"/>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:src="@drawable/send_icon"
-            android:id="@+id/send_button"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="10dp"/>
+            android:layout_marginLeft="15dp"/>
+
+
     </RelativeLayout>
 </LinearLayout>
