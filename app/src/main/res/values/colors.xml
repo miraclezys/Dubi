@@ -11,4 +11,5 @@
     <color name="colorTab">#f36c60</color>
     <color name="colorBackground">#F2F2F2</color>
     <color name="colorBlack">#000</color>
+    <color name="colorStatus">#dd191d</color>
 </resources>
