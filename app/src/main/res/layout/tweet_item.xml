@@ -60,7 +60,7 @@
             android:layout_marginTop="8dp"
             android:background="@mipmap/loading"/>
         <Button
-            android:id="@+id/delete"
+            android:id="@+id/delete_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="16dp"
@@ -72,9 +72,9 @@
             android:id="@+id/discuss_button"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:layout_alignBottom="@id/delete"
+            android:layout_alignBottom="@id/delete_button"
             android:layout_marginRight="16dp"
-            android:layout_toLeftOf="@id/delete"
+            android:layout_toLeftOf="@id/delete_button"
             android:background="@mipmap/discuss3"/>
     </RelativeLayout>
 

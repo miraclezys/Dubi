@@ -30,7 +30,6 @@ public class LoginActivity extends AppCompatActivity {
     Button mSignUpButton;
     EditText mUsername;
     EditText mPassword;
-    EditText mConfirmPassword;
     View mSignInView;
     View mSignUpView;
     DubiService client;
@@ -50,13 +49,11 @@ public class LoginActivity extends AppCompatActivity {
         mSignUpButton = (Button) findViewById(R.id.sign_up_button);
         mUsername = (EditText) findViewById(R.id.name_edit);
         mPassword = (EditText) findViewById(R.id.password_one_edit);
-        mConfirmPassword = (EditText) findViewById(R.id.password_two_edit);
         mSignInView = (View) findViewById(R.id.in_view);
         mSignUpView = (View) findViewById(R.id.up_view);
         mSignInView.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         mSignUpView.setVisibility(View.INVISIBLE);
         mSignInButton.setTextColor(getResources().getColor(R.color.colorAccent));
-        mConfirmPassword.setVisibility(View.GONE);
     }
 
     private void setButtonListener() {
@@ -68,7 +65,6 @@ public class LoginActivity extends AppCompatActivity {
                 mSignInView.setVisibility(View.VISIBLE);
                 mSignUpView.setVisibility(View.INVISIBLE);
                 mSignInView.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                mConfirmPassword.setVisibility(View.GONE);
                 state = SIGN_IN;
             }
         });
@@ -81,7 +77,6 @@ public class LoginActivity extends AppCompatActivity {
                 mSignInView.setVisibility(View.INVISIBLE);
                 mSignUpView.setVisibility(View.VISIBLE);
                 mSignUpView.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                mConfirmPassword.setVisibility(View.VISIBLE);
                 state = SIGN_UP;
             }
         });
