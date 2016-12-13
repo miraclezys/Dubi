@@ -40,6 +40,7 @@ import cc.wo_mo.dubi.data.DubiService;
 import cc.wo_mo.dubi.data.Model.BaseResponse;
 import cc.wo_mo.dubi.data.Model.Tweet;
 import cc.wo_mo.dubi.data.Model.UploadResponse;
+import cc.wo_mo.dubi.utils.ImageUtils;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -54,17 +55,12 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
     CoordinatorLayout mImageLayout;
     FloatingActionButton mCancelButton;
     ImageView mImage;
-    Picasso picasso;
     UploadTarget mUploadTarget = new UploadTarget();
-    DubiService client;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
-        client = ApiClient.getClient(this);
         init();
-        Picasso.Builder builder = new Picasso.Builder(this);
-        picasso = builder.downloader(new OkHttp3Downloader(ApiClient.sHttpClient)).build();
     }
 
     private void init() {
@@ -89,7 +85,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.send_button:
                 if (mImage.getTag() != null) {
-                    picasso.load((Uri)mImage.getTag()).into(mUploadTarget);
+                    ImageUtils.with(this).load((Uri)mImage.getTag()).into(mUploadTarget);
                     Log.d("upload", "complete");
                     if (mUploadTarget.imageUrl != null)
                         Log.d("image url", mUploadTarget.imageUrl);
@@ -135,8 +131,10 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
 
             final RequestBody imageBody = RequestBody.create(
                     MediaType.parse("multipart/form-data"), file);
-            MultipartBody.Part imageBodyPart = MultipartBody.Part.createFormData("image", file.getName(), imageBody);
-            client.uploadImage(imageBodyPart, ApiClient.user_id)
+            MultipartBody.Part imageBodyPart = MultipartBody.Part
+                    .createFormData("image", file.getName(), imageBody);
+            ApiClient.getClient(EditActivity.this)
+                    .uploadImage(imageBodyPart, ApiClient.user_id)
                     .enqueue(new Callback<UploadResponse>() {
                 @Override
                 public void onResponse(Call<UploadResponse> call,
@@ -145,7 +143,8 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                         imageUrl = response.body().url;
                         showToast("上传成功");
                         String text = mEditText.getText().toString();
-                        client.createTweet(ApiClient.user_id, new Tweet(text, imageUrl))
+                        ApiClient.getClient(EditActivity.this)
+                                .createTweet(ApiClient.user_id, new Tweet(text, imageUrl))
                                 .enqueue(new Callback<Tweet>() {
                             @Override
                             public void onResponse(Call<Tweet> call, Response<Tweet> response) {
@@ -180,12 +179,10 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public void onBitmapFailed(Drawable errorDrawable) {
-
         }
 
         @Override
         public void onPrepareLoad(Drawable placeHolderDrawable) {
-
         }
     }
 
@@ -197,17 +194,16 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
             mImage.setTag(null);
             final Uri selectedImage = data.getData();
             int width =  getResources().getDisplayMetrics().widthPixels;
-            picasso.load(selectedImage).resize(width, width*2/3).centerCrop()
+            ImageUtils.with(this).load(selectedImage).resize(width, width*2/3).centerCrop()
                     .into(mImage, new com.squareup.picasso.Callback() {
                 @Override
                 public void onSuccess() {
                     mImage.setTag(selectedImage);
                     mImageLayout.setVisibility(View.VISIBLE);
                 }
-
                 @Override
                 public void onError() {
-
+                    Log.d("Error", "load iamge");
                 }
             });
         }
