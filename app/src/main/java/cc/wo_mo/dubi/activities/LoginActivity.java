@@ -33,12 +33,13 @@ public class LoginActivity extends AppCompatActivity {
     EditText mConfirmPassword;
     View mSignInView;
     View mSignUpView;
-    DubiService client = ApiClient.getClient();
+    DubiService client;
     int state = SIGN_IN;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
+        client = ApiClient.getClient(this);
         init();
         setButtonListener();
     }

@@ -56,11 +56,12 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
     ImageView mImage;
     Picasso picasso;
     UploadTarget mUploadTarget = new UploadTarget();
-    DubiService client = ApiClient.getClient();
+    DubiService client;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
+        client = ApiClient.getClient(this);
         init();
         Picasso.Builder builder = new Picasso.Builder(this);
         picasso = builder.downloader(new OkHttp3Downloader(ApiClient.sHttpClient)).build();

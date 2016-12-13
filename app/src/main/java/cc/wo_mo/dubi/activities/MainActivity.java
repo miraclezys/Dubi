@@ -29,7 +29,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
-    DubiService client = ApiClient.getClient();
+    DubiService client;
     BlankFragment mBlankFragment;
     Blank1Fragment mBlank1Fragment;
     Fragment currentFragment;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        client = ApiClient.getClient(this);
         mBlankFragment = new BlankFragment();
         mFab = (FloatingActionButton) findViewById(R.id.edit_fab);
         mFab.setOnClickListener(new View.OnClickListener() {

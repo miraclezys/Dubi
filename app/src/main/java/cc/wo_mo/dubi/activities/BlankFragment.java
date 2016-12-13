@@ -33,13 +33,14 @@ public class BlankFragment extends Fragment {
     int lastVisiblePosition;
     TweetAdapter mAdapter;
     List<Tweet> data;
-    DubiService client = ApiClient.getClient();
+    DubiService client;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle("Fuck1");
+        client = ApiClient.getClient(getActivity());
         mSwipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipe_refresh_layout);
         mSwipeRefreshLayout.setProgressViewOffset(false, 0,
                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24,
