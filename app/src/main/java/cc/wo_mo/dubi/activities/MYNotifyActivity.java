@@ -44,7 +44,7 @@ public class MYNotifyActivity extends AppCompatActivity {
             Map<String,Object>temp = new LinkedHashMap<>();
             temp.put("user_name","user_name"+i);
             for(int j = 1;j<=5;j++) {
-                temp.put("text", "This is the text " + i);
+                temp.put("text", "英国是个可爱的国家那里的景色超级美的，旅馆也很雅致，生活如此多娇 " + i);
             }
             notifyData.add(temp);
         }
