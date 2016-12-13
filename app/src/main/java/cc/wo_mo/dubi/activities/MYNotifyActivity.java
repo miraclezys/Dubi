@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -19,6 +21,8 @@ public class MYNotifyActivity extends AppCompatActivity {
     RecyclerView rv1;
     List<Map<String,Object>> notifyData;
     ListView lv1;
+    Toolbar tb;
+    TextView tbtittle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +32,12 @@ public class MYNotifyActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rv1.setLayoutManager(layoutManager);
+
+        tb = (Toolbar) findViewById(R.id.toolbar);
+        tbtittle = (TextView) findViewById(R.id.TBtittle);
+        tbtittle.setText("消息通知");
+        setSupportActionBar(tb);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         notifyData = new ArrayList<>();
         for(int i = 1;i<=10;i++){
