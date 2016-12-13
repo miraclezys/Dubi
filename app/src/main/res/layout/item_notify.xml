@@ -8,19 +8,20 @@
         android:layout_height="wrap_content"
         card_view:cardElevation="5dp"
         android:clickable="true"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:id="@+id/card_notify">
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp">
             <ImageView
                 android:id="@+id/head_pic"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:layout_marginLeft="20dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="16dp"
                 android:background="@mipmap/touxiang1"/>
             <TextView
                 android:id="@+id/user_name"
@@ -28,36 +29,37 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/head_pic"
                 android:layout_alignTop="@id/head_pic"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="16dp"
                 android:text="sunny"
-                android:textSize="25dp"/>
+                android:textSize="20sp"
+                android:textColor="@color/colorBlack"/>
             <TextView
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/head_pic"
                 android:layout_below="@+id/user_name"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="5dp"
                 android:text="11月27日 23:55"
-                android:textSize="16dp"/>
+                android:textSize="12sp"/>
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_below="@id/head_pic">
                 <TableRow>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:textSize="18dp"
+                        android:layout_marginLeft="16dp"
+                        android:textSize="14sp"
                         android:text="回复"/>
                     <TextView
                         android:id="@+id/at_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="18dp"
+                        android:textSize="14sp"
                         android:textColor="#37b6ab"
                         android:text="\@Yathing" />
                     <TextView
@@ -66,7 +68,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="英国是个可爱的国家那里的景色超级美的，旅馆也很雅致，生活如此多娇"
-                        android:textSize="18dp"/>
+                        android:textSize="14sp"
+                        android:textColor="@color/colorBlack"/>
                 </TableRow>
             </TableLayout>
         </RelativeLayout>
