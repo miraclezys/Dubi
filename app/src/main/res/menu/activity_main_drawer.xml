@@ -3,20 +3,20 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/all_tweets"
-            android:icon="@mipmap/all_sweet"
+            android:icon="@drawable/all_sweet"
             android:title="全部动态" />
         <item
             android:id="@+id/friend_tweets"
-            android:icon="@mipmap/focus"
+            android:icon="@drawable/focus"
             android:title="关注动态" />
         <item
             android:id="@+id/my_tweets"
-            android:icon="@mipmap/me"
+            android:icon="@drawable/me"
             android:title="个人动态" />
     </group>
     <item
         android:id="@+id/nav_logout"
-        android:icon="@mipmap/logout"
+        android:icon="@drawable/logout"
         android:title="注销" />
 
 </menu>
