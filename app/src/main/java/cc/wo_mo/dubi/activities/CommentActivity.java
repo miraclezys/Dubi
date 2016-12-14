@@ -50,14 +50,14 @@ public class CommentActivity extends AppCompatActivity {
         }
         CommentAdapter notifyAdapter = new CommentAdapter(CommentActivity.this,notifyData);
         rv1.setAdapter(notifyAdapter);
-        final View layout = (View)findViewById(R.id.tweet);
-        ImageButton mSend = (ImageButton)layout.findViewById(R.id.comment_button);
+//        final View layout = (View)findViewById(R.id.tweet);
+//        ImageButton mSend = (ImageButton)layout.findViewById(R.id.comment_button);
 
-        mSend.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                System.out.println("!!!!!");
-            }
-        });
+//        mSend.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                System.out.println("!!!!!");
+//            }
+//        });
     }
 }

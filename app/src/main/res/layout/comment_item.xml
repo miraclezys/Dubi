@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="5dp"
+    app:cardElevation="2dp"
     android:clickable="true"
     app:cardCornerRadius="2dp"
-    android:layout_marginTop="8dp">
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="1dp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
