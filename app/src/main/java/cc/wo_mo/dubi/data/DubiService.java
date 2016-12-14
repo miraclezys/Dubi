@@ -68,9 +68,9 @@ public interface DubiService {
     Call<Tweet> createTweet(@Path("user_id") int user_id,
                             @Body Tweet tweet);
 
-    @DELETE("/users/{user_id}/tweet")
-    Call<Tweet> deleteTweet(@Path("user_id") int user_id,
-                            @Body Tweet tweet);
+    @DELETE("/users/{user_id}/tweet/{tweet_id}")
+    Call<BaseResponse> deleteTweet(@Path("user_id") int user_id,
+                                   @Path("tweet_id") int tweet_id);
 
 
     /*
