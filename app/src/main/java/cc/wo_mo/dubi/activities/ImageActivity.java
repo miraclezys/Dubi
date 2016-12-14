@@ -11,15 +11,18 @@ import com.squareup.picasso.Picasso;
 import cc.wo_mo.dubi.R;
 import cc.wo_mo.dubi.data.ApiClient;
 import cc.wo_mo.dubi.utils.ImageUtils;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class ImageActivity extends AppCompatActivity {
 
+    PhotoViewAttacher mAttacher;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image);
         ImageView image = (ImageView) findViewById(R.id.image);
         Uri uri = getIntent().getData();
-        ImageUtils.with(this).load(uri).into(image);
+        image.setImageURI(uri);
+        mAttacher = new PhotoViewAttacher(image, true);
     }
 }
