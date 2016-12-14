@@ -39,7 +39,6 @@
             android:theme="@style/AppTheme.FullScreen">
         </activity>
         <activity android:name=".activities.FansActivty">
-
         </activity>
         <activity android:name=".activities.FriendsActivity">
             <intent-filter>
@@ -47,8 +46,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".activities.CommentActivity"
+            android:exported="true">
+        </activity>
+        <activity android:name=".activities.MyInfoActivity"
+            android:exported="true">
+        </activity>
+        <activity android:name=".activities.MyInfoEditActivity"
             android:exported="true">
         </activity>
     </application>
