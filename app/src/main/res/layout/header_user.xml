@@ -9,12 +9,12 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:background="@mipmap/touxiang1"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="60dp"/>
     <TextView
         android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:textColor="@color/colorWhite"
         android:text="Sunny"
         android:textSize="20dp"/>

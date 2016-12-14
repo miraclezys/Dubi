@@ -52,9 +52,6 @@
         <activity android:name=".activities.MyInfoActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".activities.MyInfoEditActivity"
-            android:exported="true">
-        </activity>
     </application>
 
 </manifest>
