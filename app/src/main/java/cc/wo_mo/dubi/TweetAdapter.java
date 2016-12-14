@@ -3,6 +3,7 @@ package cc.wo_mo.dubi;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,6 +22,7 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.util.List;
 
+import cc.wo_mo.dubi.activities.UserInfoActivity;
 import cc.wo_mo.dubi.data.ApiClient;
 import cc.wo_mo.dubi.data.Model.BaseResponse;
 import cc.wo_mo.dubi.data.Model.Tweet;
@@ -36,7 +38,7 @@ import retrofit2.Response;
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.MyViewHolder> {
 
     public List<Tweet> mData;
-    Context mContex;
+    private Context mContex;
     public TweetAdapter(Context context, List<Tweet> data) {
         mData = data;
         mContex = context;
@@ -50,7 +52,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        Tweet tweet = mData.get(position);
+        final Tweet tweet = mData.get(position);
         holder.username.setText(tweet.user.username);
         holder.text.setText(tweet.description);
         if (tweet.image_url != null) {
@@ -80,6 +82,14 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.MyViewHolder
         } else {
             holder.deleteBtn.setVisibility(View.INVISIBLE);
         }
+        holder.userPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContex, UserInfoActivity.class);
+                intent.putExtra("user", ApiClient.gson.toJson(tweet.user));
+                mContex.startActivity(intent);
+            }
+        });
     }
 
     @Override

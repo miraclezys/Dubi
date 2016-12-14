@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     private static final String PICASSO_CACHE = "picasso-cache";//缓存图片的存放文件夹名
-    private static final int MAX_DISK_CACHE_SIZE = 50 * 1024 * 1024;
+    private static final int MAX_DISK_CACHE_SIZE = 50 * 1024 * 1024; //50M缓存大小
     public final static String BASE_URL = "http://dubi.wo-mo.cc";
     public static String token = "";
     public static int user_id = 0;

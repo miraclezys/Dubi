@@ -44,6 +44,13 @@ public interface DubiService {
 
 
     /*
+    * User Api
+    * */
+
+    @GET("/users/{user_id}")
+    Call<User> getUserInfo(@Path("user_id") int user_id);
+
+    /*
     * Tweet API
     * */
 

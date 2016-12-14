@@ -32,12 +32,14 @@ public class MainActivity extends AppCompatActivity
     DubiService client;
     BlankFragment mBlankFragment;
     Blank1Fragment mBlank1Fragment;
-    Fragment currentFragment;
+    BlankFragment currentFragment;
     FloatingActionButton mFab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Dubi");
         client = ApiClient.getClient(this);
         mBlankFragment = new BlankFragment();
         mFab = (FloatingActionButton) findViewById(R.id.edit_fab);
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 200) {
-            mBlankFragment.getData();
+            currentFragment.getData();
         }
     }
 
@@ -113,14 +115,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     void switchFragment(Fragment from, Fragment to) {
-        currentFragment = to;
+        currentFragment = (BlankFragment) to;
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         if (!to.isAdded()) {
             transaction.add(R.id.main_content, to);
         }
         transaction.hide(from).show(to).commit();
-
     }
 
     void showToast(String msg) {
