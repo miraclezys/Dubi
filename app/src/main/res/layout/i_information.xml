@@ -9,17 +9,17 @@
         android:layout_height="match_parent">
         <Button
             android:id="@+id/return_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
             android:background="@drawable/t_return_white"
             android:textColor="@color/colorWhite"/>
         <Button
             android:id="@+id/edit_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
             android:layout_alignParentRight="true"
             android:background="@drawable/pen_white"

@@ -1,38 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <android.support.design.widget.AppBarLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            app:layout_collapseMode="pin">
-            <Button
-                android:id="@+id/return_button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/t_return_white"
-                android:textColor="@color/colorWhite"/>
-            <ImageButton
-                android:id="@+id/edit_finish_button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginRight="16dp"
-                android:background="@drawable/yes"
-                android:layout_gravity="right|center_vertical" />
-        </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
-
+        android:layout_height="60dp"
+        android:text="编辑资料"
+        android:textSize="18dp"
+        android:paddingLeft="24dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorStatus"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="?android:attr/actionBarSize"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:orientation="vertical">
@@ -54,14 +37,14 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_toRightOf="@id/user_pic"
-                android:layout_marginLeft="70dp"
+                android:layout_marginLeft="40dp"
                 android:src="@mipmap/touxiang1" />
             <Button
                 android:layout_width="80dp"
                 android:layout_height="20dp"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/user_pic_img"
-                android:layout_marginLeft="70dp"
+                android:layout_marginLeft="40dp"
                 android:text="编辑头像"
                 android:textSize="16dp"
                 android:gravity="left|center_vertical"
@@ -82,7 +65,7 @@
                 android:id="@+id/introduction_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
+                android:layout_marginLeft="40dp"
                 android:text="爱学习爱生活"
                 android:textSize="16dp"
                 android:textColor="@color/colorBlack"/>
@@ -105,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/sex"
                 android:orientation="horizontal"
-                android:layout_marginLeft="70dp">
+                android:layout_marginLeft="40dp">
                 <RadioButton
                     android:id="@+id/sex_girl"
                     android:layout_width="wrap_content"
@@ -147,7 +130,7 @@
                 android:id="@+id/birth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
+                android:layout_marginLeft="40dp"
                 android:text="11.11"
                 android:textSize="16dp"
                 android:textColor="@color/colorBlack"/>
@@ -166,10 +149,10 @@
                 android:id="@+id/area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
+                android:layout_marginLeft="40dp"
                 android:text="广东"
                 android:textSize="16dp"
                 android:textColor="@color/colorBlack"/>
         </LinearLayout>
     </LinearLayout>
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>
