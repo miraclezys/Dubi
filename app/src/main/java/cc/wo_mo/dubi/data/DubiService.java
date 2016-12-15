@@ -87,7 +87,9 @@ public interface DubiService {
     Call<Comment> createComment(@Path("tweet_id") int tweet_id, @Body Comment comment);
 
     @GET("/tweet/{tweet_id}/comment")
-    Call<List<Comment>> getComments(@Path("tweet_id") int tweet_id);
+    Call<List<Comment>> getComments(@Path("tweet_id") int tweet_id,
+                                    @Query("last_id") int last_id,
+                                    @Query("limit") int limit);
 
     @GET("/comment/{comment_id}")
     Call<Comment> getComment(@Path("comment_id") int comment_id);

@@ -16,30 +16,32 @@ import java.util.List;
 import java.util.Map;
 
 import cc.wo_mo.dubi.R;
+import cc.wo_mo.dubi.data.Model.Comment;
+import cc.wo_mo.dubi.data.Model.Tweet;
 
 /**
  * Created by shushu on 2016/12/14.
  */
 
 public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-    private List<Map<String,Object>> list = new ArrayList<>();
-    private Context myContext;
-    private LayoutInflater inflater;
+    private List<Comment> mComments;
+    private Context mContext;
+    private Tweet mTweet;
 
-    public CommentAdapter(Context context,List<Map<String,Object>>datas){
-        this.myContext = context;
-        this.list = datas;
-        inflater = LayoutInflater.from(myContext);
+    public CommentAdapter(Context context,List<Comment> comments, Tweet tweet){
+        this.mContext = context;
+        mComments = comments;
+        mTweet = tweet;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view;
         if (i == 0) {
-            view = inflater.inflate(R.layout.tweet_item,viewGroup,false);
+            view = LayoutInflater.from(mContext).inflate(R.layout.tweet_item,viewGroup,false);
             return new TweetViewHolder(view);
         } else {
-            view = inflater.inflate(R.layout.comment_item,viewGroup,false);
+            view = LayoutInflater.from(mContext).inflate(R.layout.comment_item,viewGroup,false);
             return new CommentViewHolder(view);
         }
 
@@ -51,20 +53,28 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder myViewHolder, int i) {
-        if (i == 0) {
-            LinearLayout ll = new LinearLayout(myContext);
+    public void onBindViewHolder(RecyclerView.ViewHolder myViewHolder, int position) {
+        if (position == 0) {
+            LinearLayout ll = new LinearLayout(mContext);
             ll.setOrientation(LinearLayout.VERTICAL);
             DisplayMetrics dm = new DisplayMetrics();
-            float density = myContext.getResources().getDisplayMetrics().density;
+            float density = mContext.getResources().getDisplayMetrics().density;
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.setMargins(0, 10, 0, (int)(20*density));
             myViewHolder.itemView.setLayoutParams(layoutParams);
         } else {
-            i--;
-            ((CommentViewHolder)myViewHolder).user_name.setText(list.get(i).get("user_name").toString());
-            ((CommentViewHolder)myViewHolder).text.setText(list.get(i).get("text").toString());
+            CommentViewHolder viewHolder = (CommentViewHolder)myViewHolder;
+            if (position == mComments.size()) {
+                viewHolder.lastItemHint.setVisibility(View.VISIBLE);
+            } else {
+                viewHolder.lastItemHint.setVisibility(View.GONE);
+            }
+            position--;
+
+            Comment c = mComments.get(position);
+            viewHolder.user_name.setText(c.from_user.username);
+            viewHolder.text.setText(c.content);
         }
     }
 
@@ -72,15 +82,23 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        return list.size()+1;
+        if (mComments == null)
+            return 1;
+        return mComments.size()+1;
+    }
+
+    public void refreshComments(List<Comment> comments) {
+        mComments = comments;
+        notifyDataSetChanged();
     }
 
     public class CommentViewHolder extends RecyclerView.ViewHolder {
-        TextView user_name,text;
+        TextView user_name,text, lastItemHint;
         public CommentViewHolder(View itemView) {
             super(itemView);
             user_name = (TextView)itemView.findViewById(R.id.user_name);
             text = (TextView)itemView.findViewById(R.id.text);
+            lastItemHint = (TextView) itemView.findViewById(R.id.last_item_hint);
         }
     }
 

@@ -22,6 +22,7 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.util.List;
 
+import cc.wo_mo.dubi.activities.CommentActivity;
 import cc.wo_mo.dubi.activities.UserInfoActivity;
 import cc.wo_mo.dubi.data.ApiClient;
 import cc.wo_mo.dubi.data.Model.BaseResponse;
@@ -87,6 +88,14 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.MyViewHolder
             public void onClick(View v) {
                 Intent intent = new Intent(mContex, UserInfoActivity.class);
                 intent.putExtra("user", ApiClient.gson.toJson(tweet.user));
+                mContex.startActivity(intent);
+            }
+        });
+        holder.commentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContex, CommentActivity.class);
+                intent.putExtra("tweet", ApiClient.gson.toJson(tweet));
                 mContex.startActivity(intent);
             }
         });

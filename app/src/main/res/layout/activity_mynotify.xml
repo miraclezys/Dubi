@@ -46,6 +46,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
+                tools:listitem="@layout/item_notify"
+                app:layoutManager="LinearLayoutManager"
+                tools:contex="cc.wo_mo.dubi.activities.MyNotifyAdapter"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:id="@+id/Notiftlist">
             </android.support.v7.widget.RecyclerView>
