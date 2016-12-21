@@ -226,8 +226,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent);
                 break;
             case R.id.return_button:
-                Intent intent2 = new Intent(this,MainActivity.class);
-                startActivity(intent2);
+                finish();
         }
     }
 }
