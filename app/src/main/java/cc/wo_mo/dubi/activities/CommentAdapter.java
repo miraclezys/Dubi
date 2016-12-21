@@ -57,7 +57,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (position == 0) {
             LinearLayout ll = new LinearLayout(mContext);
             ll.setOrientation(LinearLayout.VERTICAL);
-            DisplayMetrics dm = new DisplayMetrics();
             float density = mContext.getResources().getDisplayMetrics().density;
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);

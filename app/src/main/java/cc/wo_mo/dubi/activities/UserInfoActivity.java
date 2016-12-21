@@ -1,5 +1,6 @@
 package cc.wo_mo.dubi.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -33,6 +34,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     SwipeRefreshLayout mSwipeRefreshLayout;
     RecyclerView mRecyclerView;
     Button follwButton;
+    Button editButton;
     User user;
     CollapsingToolbarLayout mCollapsingToolbarLayout;
     LinearLayoutManager layoutManager;
@@ -59,9 +61,13 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         CollapsingToolbarLayout cl = (CollapsingToolbarLayout)findViewById(R.id.collapsing);
         cl.setTitle(user.username);
         follwButton = (Button) findViewById(R.id.follow_button);
+        editButton = (Button) findViewById(R.id.edit_button);
         follwButton.setOnClickListener(this);
+        editButton.setOnClickListener(this);
         if (user.user_id == ApiClient.user_id) {
             follwButton.setVisibility(View.GONE);
+        } else {
+            editButton.setVisibility(View.GONE);
         }
     }
 
@@ -92,7 +98,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         } else {
             follwButton.setText("关注");
         }
-
+        // Todo: 更新其他信息
     }
 
     @Override
@@ -156,6 +162,11 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                                 }
                             });
                 }
+                break;
+            case R.id.edit_button:
+                Intent intent  = new Intent(this, EditInfoActivity.class);
+                intent.putExtra("user", ApiClient.gson.toJson(user));
+                startActivity(intent);
         }
     }
 }
