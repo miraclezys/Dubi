@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jakewharton.picasso.OkHttp3Downloader;
@@ -23,11 +26,13 @@ import java.io.IOException;
 import java.util.List;
 
 import cc.wo_mo.dubi.activities.CommentActivity;
+import cc.wo_mo.dubi.activities.ImageActivity;
 import cc.wo_mo.dubi.activities.UserInfoActivity;
 import cc.wo_mo.dubi.data.ApiClient;
 import cc.wo_mo.dubi.data.Model.BaseResponse;
 import cc.wo_mo.dubi.data.Model.Tweet;
 import cc.wo_mo.dubi.utils.ImageUtils;
+import cc.wo_mo.dubi.utils.ProcessBitmap;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -57,10 +62,21 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.MyViewHolder
         holder.username.setText(tweet.user.username);
         holder.text.setText(tweet.description);
         if (tweet.image_url != null) {
+            int width =  mContex.getResources().getDisplayMetrics().widthPixels-
+            ((ViewGroup.MarginLayoutParams)(holder.itemView.getLayoutParams())).leftMargin*2;
             holder.picture.setVisibility(View.VISIBLE);
             ImageUtils.with(mContex)
                     .load(ApiClient.BASE_URL+tweet.image_url)
-                    .fit().into(holder.picture);
+                    .transform(new ProcessBitmap(ProcessBitmap.MODE_FIX_SIZE,width, width*2/3))
+                    .into(holder.picture);
+            holder.picture.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent imageIntent = new Intent(mContex, ImageActivity.class);
+                    imageIntent.putExtra("url", ApiClient.BASE_URL+tweet.image_url);
+                    mContex.startActivity(imageIntent);
+                }
+            });
         } else {
             holder.picture.setVisibility(View.GONE);
         }
