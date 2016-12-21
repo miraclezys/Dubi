@@ -156,4 +156,14 @@
                 android:textColor="@color/colorBlack"/>
         </LinearLayout>
     </LinearLayout>
+    <Button
+        android:id="@+id/submit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorStatus"
+        android:text="提交"
+        android:textSize="18dp"
+        android:textColor="#ffffffff" />
 </LinearLayout>
