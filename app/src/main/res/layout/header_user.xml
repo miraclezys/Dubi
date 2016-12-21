@@ -4,12 +4,14 @@
     android:layout_height="192dp"
     android:paddingLeft="20dp"
     android:background="@mipmap/beijing5">
+
     <ImageView
         android:id="@+id/user_pic_img"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:background="@mipmap/touxiang1"
+        android:background="@mipmap/ic_user"
         android:layout_marginTop="60dp"/>
+
     <TextView
         android:id="@+id/user_name"
         android:layout_width="wrap_content"

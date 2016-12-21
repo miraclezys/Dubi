@@ -223,10 +223,16 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
             case R.id.edit_button:
                 Intent intent  = new Intent(this, EditInfoActivity.class);
                 intent.putExtra("user", ApiClient.gson.toJson(user));
-                startActivity(intent);
+                startActivityForResult(intent, 0);
                 break;
             case R.id.return_button:
                 finish();
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        refresh();
     }
 }

@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.squareup.picasso.MemoryPolicy;
@@ -37,13 +39,15 @@ import retrofit2.Response;
 
 public class EditInfoActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText birth;
+    private EditText region;
     private Button selectPhotoButton;
     private Button commitButton;
     private ImageView userPhoto;
     private EditText introduction;
-    private String birthStr ="0000/00/00";
+    private String birthStr ="1999.11.11";
     private UploadTarget mUploadTarget;
     private User user;
+    private RadioGroup genderRadioGroup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +67,8 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
         userPhoto.setOnClickListener(this);
         introduction = (EditText) findViewById(R.id.introduction_text);
         introduction.setOnClickListener(this);
-
+        genderRadioGroup = (RadioGroup) findViewById(R.id.gender);
+        region = (EditText) findViewById(R.id.region);
         birth=(EditText)findViewById(R.id.birth);
         birth.setFocusable(false);
         birth.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +86,7 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
                     int month = c.get(Calendar.MONTH);
                     int day = c.get(Calendar.DAY_OF_MONTH);
 
-                    //设置电话号码
+                    //设置生日
                     mDatePicker.init(year, month, day, new DatePicker.OnDateChangedListener() {
                         @Override
                         public void onDateChanged(DatePicker arg0, int year, int month, int day) {
@@ -108,9 +113,26 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
                     }).create().show();
                 }
 
-
-
         });
+        Log.d("edit", ApiClient.gson.toJson(user));
+        if (user.photo_url != null) {
+            ImageUtils.with(this).load(ApiClient.BASE_URL+user.photo_url)
+                    .transform(new ProcessBitmap(ProcessBitmap.MODE_CIRCLE, 200, null))
+                    .into(userPhoto);
+        }
+        if (user.gender == null) {
+            genderRadioGroup.check(R.id.unknown);
+        } else if (user.gender.equals("男")) {
+            genderRadioGroup.check(R.id.boy);
+        } else if (user.gender.equals("女")) {
+            genderRadioGroup.check(R.id.girl);
+        }
+        if (user.region != null) {
+            region.setText(user.region);
+        }
+        if (user.birth != null) {
+            birth.setText(user.birth);
+        }
     }
 
 
@@ -144,12 +166,16 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
         user.photo_url = photoUrl;
         user.birth = birthStr;
         user.introduction = introduction.getText().toString();
+        user.gender = ((RadioButton) findViewById(genderRadioGroup.getCheckedRadioButtonId()))
+                .getText().toString();
+        user.region = region.getText().toString();
         ApiClient.getClient(this).updateUserInfo(ApiClient.user_id, user)
                 .enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if (response.code() == 200) {
                             Log.d("update", "ok");
+                            EditInfoActivity.this.finish();
                         } else {
                             try {
                                 Log.d("error", response.errorBody().string());

@@ -66,7 +66,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             layoutParams.setMargins(0, 10, 0, (int)(20*density));
             myViewHolder.itemView.setLayoutParams(layoutParams);
         } else {
-            CommentViewHolder viewHolder = (CommentViewHolder)myViewHolder;
+            final CommentViewHolder viewHolder = (CommentViewHolder)myViewHolder;
             if (position == mComments.size()) {
                 viewHolder.lastItemHint.setVisibility(View.VISIBLE);
             } else {
@@ -80,6 +80,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             viewHolder.time.setText(TimeTool.getStandardTime(c.time));
         }
     }
+
 
 
 
