@@ -1,27 +1,21 @@
 package cc.wo_mo.dubi.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import cc.wo_mo.dubi.R;
 import cc.wo_mo.dubi.data.ApiClient;
@@ -42,12 +36,14 @@ public class CommentActivity extends AppCompatActivity {
     Toolbar tb;
     SwipeRefreshLayout mSwipeRefreshLayout;
     EditText mEditText;
-
+    Button returnButton;
     Button sendButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comment_layout);
+
+
         tweet = ApiClient.gson.fromJson(getIntent().getStringExtra("tweet"), Tweet.class);
         init();
         mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh_layout);
@@ -110,6 +106,15 @@ public class CommentActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
         mEditText = (EditText) findViewById(R.id.comment_edit);
         sendButton = (Button) findViewById(R.id.send_button);
+        returnButton =(Button)findViewById(R.id.return_button);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CommentActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
