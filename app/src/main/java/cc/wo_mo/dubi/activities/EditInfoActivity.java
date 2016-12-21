@@ -9,10 +9,11 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import android.view.View;
 import java.util.Calendar;
 
 import cc.wo_mo.dubi.R;
+import cc.wo_mo.dubi.data.Model.Tools;
 
 /**
  * Created by shushu on 2016/12/15.
@@ -20,6 +21,7 @@ import cc.wo_mo.dubi.R;
 
 public class EditInfoActivity extends AppCompatActivity {
     EditText birth;
+    EditText mArea;
     public String birthstr="0000/00/00";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class EditInfoActivity extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(EditInfoActivity.this);//this
                     //初始化
                     final DatePicker mDatePicker=(DatePicker)view2.findViewById(R.id.datePicker);
-                    final EditText mEditText=(EditText)view2.findViewById(R.id.edit);
+                   // final EditText mEditText=(EditText)view2.findViewById(R.id.edit);
                     Calendar c = Calendar.getInstance();
                     int year = c.get(Calendar.YEAR);
                     int month = c.get(Calendar.MONTH);
@@ -75,6 +77,21 @@ public class EditInfoActivity extends AppCompatActivity {
 
         });
 
+        mArea = (EditText)findViewById(R.id.area);
+        mArea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(EditInfoActivity.this,"点击地区",Toast.LENGTH_SHORT);
+                if(!Tools.isFastDoubeClick()){
+                    new StateDialog(EditInfoActivity.this, 0, new StateDialog.OnStateSelectListener(){
+                        @Override
+                        public void onStateSelect(String State, String City){
+                            mArea.setText(State+"--"+City);
+                        }
+                    }).show();
+                }
+            }
+        });
 
     }
 }
