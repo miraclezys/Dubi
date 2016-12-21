@@ -78,6 +78,7 @@ public class EditInfoActivity extends AppCompatActivity {
         });
 
         mArea = (EditText)findViewById(R.id.area);
+        mArea.setFocusable(false);
         mArea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,7 +89,8 @@ public class EditInfoActivity extends AppCompatActivity {
                         public void onStateSelect(String State, String City){
                             mArea.setText(State+"--"+City);
                         }
-                    }).show();
+                    }) .show();
+
                 }
             }
         });
