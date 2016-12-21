@@ -2,21 +2,15 @@ package cc.wo_mo.dubi.activities;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import cc.wo_mo.dubi.R;
-import cc.wo_mo.dubi.TweetAdapter;
 import cc.wo_mo.dubi.data.Model.Comment;
 import cc.wo_mo.dubi.data.Model.Tweet;
 import cc.wo_mo.dubi.utils.TimeTool;
@@ -65,6 +59,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.setMargins(0, 10, 0, (int)(20*density));
             myViewHolder.itemView.setLayoutParams(layoutParams);
+            ((TweetAdapter.TweetViewHolder) myViewHolder).deleteBtn.setVisibility(View.GONE);
+            ((TweetAdapter.TweetViewHolder) myViewHolder).commentBtn.setOnClickListener(null);
         } else {
             final CommentViewHolder viewHolder = (CommentViewHolder)myViewHolder;
             if (position == mComments.size()) {

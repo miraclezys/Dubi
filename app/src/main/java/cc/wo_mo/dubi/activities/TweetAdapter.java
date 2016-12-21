@@ -1,4 +1,4 @@
-package cc.wo_mo.dubi;
+package cc.wo_mo.dubi.activities;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -25,6 +25,7 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.util.List;
 
+import cc.wo_mo.dubi.R;
 import cc.wo_mo.dubi.activities.CommentActivity;
 import cc.wo_mo.dubi.activities.ImageActivity;
 import cc.wo_mo.dubi.activities.UserInfoActivity;
@@ -90,7 +91,7 @@ public class TweetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     .transform(new ProcessBitmap(ProcessBitmap.MODE_CIRCLE, 200, null))
                     .into(holder.userPhoto);
         } else {
-            holder.userPhoto.setImageResource(R.mipmap.touxiang1);
+            holder.userPhoto.setImageResource(R.mipmap.ic_user);
         }
         holder.text.setText(tweet.description);
         holder.time.setText(TimeTool.getStandardTime(tweet.time));

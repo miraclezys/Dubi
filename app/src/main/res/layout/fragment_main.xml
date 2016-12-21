@@ -15,7 +15,7 @@
 
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/tweet_item"
-        tools:context="cc.wo_mo.dubi.TweetAdapter"/>
+        tools:context="cc.wo_mo.dubi.activities.TweetAdapter"/>
 
 </android.support.v4.widget.SwipeRefreshLayout>
 

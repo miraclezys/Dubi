@@ -31,6 +31,13 @@
                 android:layout_height="24dp"
                 android:background="@drawable/t_return_white"
                 android:textColor="@color/colorWhite"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="评论详情"
+                android:textSize="20sp"
+                android:textColor="@color/colorWhite"/>
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
     <!--<android.support.v4.widget.NestedScrollView-->
