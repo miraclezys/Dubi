@@ -43,9 +43,9 @@ public class ImageUtils {
                 if (singleton == null) {
                     singleton = new Picasso.Builder(context)
                             .downloader(new OkHttp3Downloader(ApiClient.getsHttpClient(context)))
-                            .loggingEnabled(true)
+//                            .loggingEnabled(true)
                             .build();
-                    singleton.setIndicatorsEnabled(true);
+//                    singleton.setIndicatorsEnabled(true);
                 }
             }
         }

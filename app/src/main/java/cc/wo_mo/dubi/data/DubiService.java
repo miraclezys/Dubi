@@ -1,5 +1,7 @@
 package cc.wo_mo.dubi.data;
 
+import com.google.gson.annotations.JsonAdapter;
+
 import java.util.List;
 
 import cc.wo_mo.dubi.data.Model.*;
@@ -50,6 +52,8 @@ public interface DubiService {
     @GET("/users/{user_id}")
     Call<User> getUserInfo(@Path("user_id") int user_id);
 
+    @POST("/users/{user_id}")
+    Call<User> updateUserInfo(@Path("user_id") int user_id, @Body User user);
     /*
     * Tweet API
     * */

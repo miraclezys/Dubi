@@ -8,6 +8,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -129,17 +130,18 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<BaseResponse> call,
                                                Response<BaseResponse> response) {
-                            BaseResponse res = response.body();
-                            if (res == null)
+                            if (response.code() == 200) {
+                                BaseResponse res = response.body();
+                                Snackbar.make(mSignInButton,res.message,Snackbar.LENGTH_SHORT)
+                                        .setDuration(1000)
+                                        .show();
+                            } else {
                                 try {
-                                    res = ApiClient.gson.fromJson(response.errorBody().string(),
-                                            BaseResponse.class);
+                                    Log.d("error",response.errorBody().string());
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
-                            Snackbar.make(mSignInButton,res.message,Snackbar.LENGTH_SHORT)
-                                    .setDuration(1000)
-                                    .show();
+                            }
                         }
 
                         @Override
