@@ -35,6 +35,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     RecyclerView mRecyclerView;
     Button follwButton;
     Button editButton;
+    Button returnButton;
     User user;
     CollapsingToolbarLayout mCollapsingToolbarLayout;
     LinearLayoutManager layoutManager;
@@ -62,8 +63,10 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         cl.setTitle(user.username);
         follwButton = (Button) findViewById(R.id.follow_button);
         editButton = (Button) findViewById(R.id.edit_button);
+        returnButton = (Button) findViewById(R.id.return_button);
         follwButton.setOnClickListener(this);
         editButton.setOnClickListener(this);
+        returnButton.setOnClickListener(this);
         if (user.user_id == ApiClient.user_id) {
             follwButton.setVisibility(View.GONE);
         } else {
@@ -167,6 +170,10 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 Intent intent  = new Intent(this, EditInfoActivity.class);
                 intent.putExtra("user", ApiClient.gson.toJson(user));
                 startActivity(intent);
+                break;
+            case R.id.return_button:
+                Intent intent2 = new Intent(this,EditInfoActivity.class);
+                startActivity(intent2);
         }
     }
 }

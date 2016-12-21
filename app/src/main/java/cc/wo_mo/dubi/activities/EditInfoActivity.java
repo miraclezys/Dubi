@@ -38,7 +38,6 @@ public class EditInfoActivity extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(EditInfoActivity.this);//this
                     //初始化
                     final DatePicker mDatePicker=(DatePicker)view2.findViewById(R.id.datePicker);
-                    final EditText mEditText=(EditText)view2.findViewById(R.id.edit);
                     Calendar c = Calendar.getInstance();
                     int year = c.get(Calendar.YEAR);
                     int month = c.get(Calendar.MONTH);
