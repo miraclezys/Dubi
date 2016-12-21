@@ -21,6 +21,7 @@ import cc.wo_mo.dubi.data.DubiService;
 import cc.wo_mo.dubi.data.Model.BaseResponse;
 import cc.wo_mo.dubi.data.Model.LoginResponse;
 import cc.wo_mo.dubi.data.Model.User;
+import cc.wo_mo.dubi.utils.MSharePreferences;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,7 +29,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     final static int SIGN_IN = 0;
     final static int SIGN_UP = 1;
-    Button mSubmitButton;
+    MSharePreferences mSharePreferences;
     Button mSignInButton;
     Button mSignUpButton;
     EditText mUsername;
@@ -40,6 +41,12 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mSharePreferences = MSharePreferences.getInstance(this);
+        if (mSharePreferences.getBoolean("isLogin", false)) {
+            ApiClient.token = mSharePreferences.getString("token", "");
+            ApiClient.user_id = mSharePreferences.getInt("user_id", -1);
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        }
         setContentView(R.layout.login_layout);
         client = ApiClient.getClient(this);
         init();
@@ -86,9 +93,10 @@ public class LoginActivity extends AppCompatActivity {
                                         .show();
                                 ApiClient.token = res.token;
                                 ApiClient.user_id = res.user_id;
-                                Intent intent = new Intent();
-                                intent.setClass(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
+                                mSharePreferences.putBoolean("isLogin", true);
+                                mSharePreferences.putString("token", res.token);
+                                mSharePreferences.putInt("user_id", res.user_id);
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             }
                         }
 
