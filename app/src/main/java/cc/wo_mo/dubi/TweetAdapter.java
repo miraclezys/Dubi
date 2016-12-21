@@ -33,6 +33,7 @@ import cc.wo_mo.dubi.data.Model.BaseResponse;
 import cc.wo_mo.dubi.data.Model.Tweet;
 import cc.wo_mo.dubi.utils.ImageUtils;
 import cc.wo_mo.dubi.utils.ProcessBitmap;
+import cc.wo_mo.dubi.utils.TimeTool;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -84,10 +85,12 @@ public class TweetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public static void setViewContent(final Context context, TweetViewHolder holder, final Tweet tweet) {
         holder.username.setText(tweet.user.username);
         holder.text.setText(tweet.description);
+        holder.time.setText(TimeTool.getStandardTime(tweet.time));
         if (tweet.image_url != null) {
             int width =  context.getResources().getDisplayMetrics().widthPixels-
                     ((ViewGroup.MarginLayoutParams)(holder.itemView.getLayoutParams())).leftMargin*2;
             holder.picture.setVisibility(View.VISIBLE);
+            holder.picture.setImageResource(R.mipmap.loading);
             ImageUtils.with(context)
                     .load(ApiClient.BASE_URL+tweet.image_url)
                     .transform(new ProcessBitmap(ProcessBitmap.MODE_FIX_SIZE,width, width*2/3))

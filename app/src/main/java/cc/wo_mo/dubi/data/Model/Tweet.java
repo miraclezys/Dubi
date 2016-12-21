@@ -9,7 +9,7 @@ public class Tweet extends BaseResponse {
     public String description;
     public String image_url;
     public Integer tweet_id;
-
+    public String time;
     public Tweet(String description, String image_url) {
         this.description = description;
         this.image_url = image_url;

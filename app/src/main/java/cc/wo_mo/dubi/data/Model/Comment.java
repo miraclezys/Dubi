@@ -6,6 +6,7 @@ package cc.wo_mo.dubi.data.Model;
 
 public class Comment extends BaseResponse {
     public String content;
+    public String time;
     public Integer from_user_id;
     public Integer to_user_id;
     public User from_user;

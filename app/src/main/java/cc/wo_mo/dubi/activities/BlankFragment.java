@@ -89,6 +89,7 @@ public class BlankFragment extends Fragment {
         mRecyclerView.setLayoutManager(layoutManager);
         mAdapter = new TweetAdapter(view.getContext(), data);
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setItemViewCacheSize(15);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
