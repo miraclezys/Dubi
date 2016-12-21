@@ -1,6 +1,5 @@
 package cc.wo_mo.dubi.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +27,6 @@ import retrofit2.Response;
 /**
  * Created by shushu on 2016/12/14.
  */
-
 public class CommentActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
     Tweet tweet;
@@ -42,7 +40,6 @@ public class CommentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comment_layout);
-
 
         tweet = ApiClient.gson.fromJson(getIntent().getStringExtra("tweet"), Tweet.class);
         init();
@@ -79,7 +76,6 @@ public class CommentActivity extends AppCompatActivity {
                             }
                         }
                     }
-
                     @Override
                     public void onFailure(Call<List<Comment>> call, Throwable t) {
                         t.printStackTrace();
@@ -110,8 +106,7 @@ public class CommentActivity extends AppCompatActivity {
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CommentActivity.this,MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 
