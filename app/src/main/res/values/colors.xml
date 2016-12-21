@@ -13,4 +13,5 @@
     <color name="colorBlack">#000</color>
     <color name="colorStatus">#dd191d</color>
     <color name="colorComment">#37b6ab</color>
+    <color name="colorButton">#e84e40</color>
 </resources>
