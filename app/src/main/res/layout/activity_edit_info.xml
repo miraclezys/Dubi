@@ -125,7 +125,8 @@
                 android:layout_height="wrap_content"
                 android:text="生日"
                 android:textSize="16dp"
-                android:textColor="@color/colorBlack"/>
+                android:textColor="@color/colorBlack"
+                android:clickable="true"/>
             <EditText
                 android:id="@+id/birth"
                 android:layout_width="match_parent"
