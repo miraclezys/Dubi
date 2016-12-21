@@ -19,6 +19,7 @@ import cc.wo_mo.dubi.R;
 import cc.wo_mo.dubi.TweetAdapter;
 import cc.wo_mo.dubi.data.Model.Comment;
 import cc.wo_mo.dubi.data.Model.Tweet;
+import cc.wo_mo.dubi.utils.TimeTool;
 
 /**
  * Created by shushu on 2016/12/14.
@@ -76,6 +77,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             Comment c = mComments.get(position);
             viewHolder.user_name.setText(c.from_user.username);
             viewHolder.text.setText(c.content);
+            viewHolder.time.setText(TimeTool.getStandardTime(c.time));
         }
     }
 
@@ -94,12 +96,13 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     public class CommentViewHolder extends RecyclerView.ViewHolder {
-        TextView user_name,text, lastItemHint;
+        TextView user_name,text, lastItemHint, time;
         public CommentViewHolder(View itemView) {
             super(itemView);
             user_name = (TextView)itemView.findViewById(R.id.user_name);
             text = (TextView)itemView.findViewById(R.id.text);
             lastItemHint = (TextView) itemView.findViewById(R.id.last_item_hint);
+            time = (TextView) itemView.findViewById(R.id.time);
         }
     }
 }
