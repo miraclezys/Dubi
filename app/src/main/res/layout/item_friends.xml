@@ -41,6 +41,6 @@
                 android:background="@mipmap/touming"
                 android:textSize="16sp"
                 android:textColor="#d2b6b2b2"
-                android:text="删除"/>
+                android:text="取消关注"/>
         </RelativeLayout>
     </android.support.v7.widget.CardView>

@@ -1,15 +1,7 @@
 package cc.wo_mo.dubi.activities;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -23,27 +15,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
-import com.squareup.picasso.Picasso;
-import com.jakewharton.picasso.OkHttp3Downloader;
-import com.squareup.picasso.Target;
-
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.security.PublicKey;
-
 import cc.wo_mo.dubi.R;
 import cc.wo_mo.dubi.data.ApiClient;
-import cc.wo_mo.dubi.data.DubiService;
-import cc.wo_mo.dubi.data.Model.BaseResponse;
 import cc.wo_mo.dubi.data.Model.Tweet;
-import cc.wo_mo.dubi.data.Model.UploadResponse;
 import cc.wo_mo.dubi.utils.ImageUtils;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
+import cc.wo_mo.dubi.utils.ProcessBitmap;
+import cc.wo_mo.dubi.utils.UploadTarget;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -55,7 +32,14 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
     CoordinatorLayout mImageLayout;
     FloatingActionButton mCancelButton;
     ImageView mImage;
-    UploadTarget mUploadTarget = new UploadTarget();
+    UploadTarget upload = new UploadTarget(this) {
+        @Override
+        public void onUploadSuccess() {
+            send(imageUrl);
+            showToast("上传成功");
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,10 +69,12 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.send_button:
                 if (mImage.getTag() != null) {
-                    ImageUtils.with(this).load((Uri)mImage.getTag()).into(mUploadTarget);
-                    Log.d("upload", "complete");
-                    if (mUploadTarget.imageUrl != null)
-                        Log.d("image url", mUploadTarget.imageUrl);
+                    Log.d("send", "start");
+                    ImageUtils.with(this.getApplicationContext()).load((Uri)mImage.getTag())
+                            .transform(new ProcessBitmap(ProcessBitmap.MODE_NORMAL, 1080, null))
+                            .into(upload);
+                } else {
+                    send(null);
                 }
                 break;
             case R.id.select_photo:
@@ -109,82 +95,28 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    class UploadTarget implements Target {
-
-        public String imageUrl;
-        @Override
-        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-            Log.d("path", Environment.getExternalStorageDirectory().toString());
-            File file = new File(Environment.getExternalStorageDirectory(),"test.png");
-
-            try {
-                file.createNewFile();
-                BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
-                bos.flush();
-                bos.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            final RequestBody imageBody = RequestBody.create(
-                    MediaType.parse("multipart/form-data"), file);
-            MultipartBody.Part imageBodyPart = MultipartBody.Part
-                    .createFormData("image", file.getName(), imageBody);
-            ApiClient.getClient(EditActivity.this)
-                    .uploadImage(imageBodyPart, ApiClient.user_id)
-                    .enqueue(new Callback<UploadResponse>() {
-                @Override
-                public void onResponse(Call<UploadResponse> call,
-                                       Response<UploadResponse> response) {
-                    if (response.code() == 200) {
-                        imageUrl = response.body().url;
-                        showToast("上传成功");
-                        String text = mEditText.getText().toString();
-                        ApiClient.getClient(EditActivity.this)
-                                .createTweet(ApiClient.user_id, new Tweet(text, imageUrl))
-                                .enqueue(new Callback<Tweet>() {
-                            @Override
-                            public void onResponse(Call<Tweet> call, Response<Tweet> response) {
-                                if (response.code()==200) {
-                                    showToast("发表成功");
-                                    EditActivity.this.setResult(200);
-                                    EditActivity.this.finish();
-                                } else {
-                                    showToast("发表失败");
-                                }
-                            }
-                            @Override
-                            public void onFailure(Call<Tweet> call, Throwable t) {
-                                t.printStackTrace();
-                            }
-                        });
-                    } else {
-                        try {
-                            Log.d("error", response.errorBody().string());
-                        } catch (IOException e) {
-                            e.printStackTrace();
+    void send(String imageUrl) {
+        String text = mEditText.getText().toString();
+        ApiClient.getClient(EditActivity.this)
+                .createTweet(ApiClient.user_id, new Tweet(text, imageUrl))
+                .enqueue(new Callback<Tweet>() {
+                    @Override
+                    public void onResponse(Call<Tweet> call, Response<Tweet> response) {
+                        if (response.code()==200) {
+                            showToast("发表成功");
+                            EditActivity.this.setResult(200);
+                            EditActivity.this.finish();
+                        } else {
+                            showToast("发表失败");
                         }
                     }
-                }
-
-                @Override
-                public void onFailure(Call<UploadResponse> call, Throwable t) {
-                    t.printStackTrace();
-                }
-            });
-        }
-
-        @Override
-        public void onBitmapFailed(Drawable errorDrawable) {
-        }
-
-        @Override
-        public void onPrepareLoad(Drawable placeHolderDrawable) {
-        }
+                    @Override
+                    public void onFailure(Call<Tweet> call, Throwable t) {
+                        t.printStackTrace();
+                    }
+                });
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
