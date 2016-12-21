@@ -58,28 +58,8 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        final Tweet tweet = mData.get(position);
-        holder.username.setText(tweet.user.username);
-        holder.text.setText(tweet.description);
-        if (tweet.image_url != null) {
-            int width =  mContex.getResources().getDisplayMetrics().widthPixels-
-            ((ViewGroup.MarginLayoutParams)(holder.itemView.getLayoutParams())).leftMargin*2;
-            holder.picture.setVisibility(View.VISIBLE);
-            ImageUtils.with(mContex)
-                    .load(ApiClient.BASE_URL+tweet.image_url)
-                    .transform(new ProcessBitmap(ProcessBitmap.MODE_FIX_SIZE,width, width*2/3))
-                    .into(holder.picture);
-            holder.picture.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent imageIntent = new Intent(mContex, ImageActivity.class);
-                    imageIntent.putExtra("url", ApiClient.BASE_URL+tweet.image_url);
-                    mContex.startActivity(imageIntent);
-                }
-            });
-        } else {
-            holder.picture.setVisibility(View.GONE);
-        }
+        Tweet tweet = mData.get(position);
+        setViewContent(mContex, holder, mData.get(position));
         if (tweet.user.user_id == ApiClient.user_id) {
             holder.deleteBtn.setVisibility(View.VISIBLE);
             holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
@@ -99,20 +79,44 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.MyViewHolder
         } else {
             holder.deleteBtn.setVisibility(View.INVISIBLE);
         }
+    }
+
+    public static void setViewContent(final Context context, MyViewHolder holder, final Tweet tweet) {
+        holder.username.setText(tweet.user.username);
+        holder.text.setText(tweet.description);
+        if (tweet.image_url != null) {
+            int width =  context.getResources().getDisplayMetrics().widthPixels-
+                    ((ViewGroup.MarginLayoutParams)(holder.itemView.getLayoutParams())).leftMargin*2;
+            holder.picture.setVisibility(View.VISIBLE);
+            ImageUtils.with(context)
+                    .load(ApiClient.BASE_URL+tweet.image_url)
+                    .transform(new ProcessBitmap(ProcessBitmap.MODE_FIX_SIZE,width, width*2/3))
+                    .into(holder.picture);
+            holder.picture.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent imageIntent = new Intent(context, ImageActivity.class);
+                    imageIntent.putExtra("url", ApiClient.BASE_URL+tweet.image_url);
+                    context.startActivity(imageIntent);
+                }
+            });
+        } else {
+            holder.picture.setVisibility(View.GONE);
+        }
         holder.userPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContex, UserInfoActivity.class);
+                Intent intent = new Intent(context, UserInfoActivity.class);
                 intent.putExtra("user", ApiClient.gson.toJson(tweet.user));
-                mContex.startActivity(intent);
+                context.startActivity(intent);
             }
         });
         holder.commentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContex, CommentActivity.class);
+                Intent intent = new Intent(context, CommentActivity.class);
                 intent.putExtra("tweet", ApiClient.gson.toJson(tweet));
-                mContex.startActivity(intent);
+                context.startActivity(intent);
             }
         });
     }
