@@ -23,6 +23,7 @@ import cc.wo_mo.dubi.R;
 import cc.wo_mo.dubi.data.ApiClient;
 import cc.wo_mo.dubi.data.DubiService;
 import cc.wo_mo.dubi.data.Model.BaseResponse;
+import cc.wo_mo.dubi.utils.MSharePreferences;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -94,6 +95,8 @@ public class MainActivity extends AppCompatActivity
                 public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                     if (response.code() == 200) {
                         showToast("注销成功");
+                        MSharePreferences.getInstance(MainActivity.this)
+                                .putBoolean("isLogin", false);
                         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                         startActivity(intent);
                         MainActivity.this.finish();

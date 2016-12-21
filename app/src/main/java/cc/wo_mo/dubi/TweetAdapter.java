@@ -41,7 +41,7 @@ import retrofit2.Response;
  * Created by womo on 2016/12/10.
  */
 
-public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.MyViewHolder> {
+public class TweetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public List<Tweet> mData;
     private Context mContex;
@@ -49,20 +49,20 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.MyViewHolder
         mData = data;
         mContex = context;
     }
-
+    public TweetAdapter() {}
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContex).inflate(R.layout.tweet_item, parent, false);
-        return new MyViewHolder(view);
+        return new TweetViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         Tweet tweet = mData.get(position);
-        setViewContent(mContex, holder, mData.get(position));
+        setViewContent(mContex, ((TweetViewHolder)holder), mData.get(position));
         if (tweet.user.user_id == ApiClient.user_id) {
-            holder.deleteBtn.setVisibility(View.VISIBLE);
-            holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
+            ((TweetViewHolder)holder).deleteBtn.setVisibility(View.VISIBLE);
+            ((TweetViewHolder)holder).deleteBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     new AlertDialog.Builder(mContex)
@@ -77,11 +77,11 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.MyViewHolder
                 }
             });
         } else {
-            holder.deleteBtn.setVisibility(View.INVISIBLE);
+            ((TweetViewHolder)holder).deleteBtn.setVisibility(View.INVISIBLE);
         }
     }
 
-    public static void setViewContent(final Context context, MyViewHolder holder, final Tweet tweet) {
+    public static void setViewContent(final Context context, TweetViewHolder holder, final Tweet tweet) {
         holder.username.setText(tweet.user.username);
         holder.text.setText(tweet.description);
         if (tweet.image_url != null) {
@@ -154,7 +154,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.MyViewHolder
         );
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    public class TweetViewHolder extends RecyclerView.ViewHolder {
         ImageView userPhoto;
         TextView username;
         TextView time;
@@ -163,7 +163,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.MyViewHolder
         ImageButton deleteBtn;
         ImageButton commentBtn;
 
-        public MyViewHolder(View itemView) {
+        public TweetViewHolder(View itemView) {
             super(itemView);
             userPhoto = (ImageView)itemView.findViewById(R.id.user_pic_img);
             username = (TextView)itemView.findViewById(R.id.user_name);
