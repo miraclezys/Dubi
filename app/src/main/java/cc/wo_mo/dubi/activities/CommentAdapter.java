@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import cc.wo_mo.dubi.R;
+import cc.wo_mo.dubi.TweetAdapter;
 import cc.wo_mo.dubi.data.Model.Comment;
 import cc.wo_mo.dubi.data.Model.Tweet;
 
@@ -39,7 +40,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         View view;
         if (i == 0) {
             view = LayoutInflater.from(mContext).inflate(R.layout.tweet_item,viewGroup,false);
-            return new TweetViewHolder(view);
+            return new TweetAdapter().new TweetViewHolder(view);
         } else {
             view = LayoutInflater.from(mContext).inflate(R.layout.comment_item,viewGroup,false);
             return new CommentViewHolder(view);
@@ -55,6 +56,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder myViewHolder, int position) {
         if (position == 0) {
+            TweetAdapter.setViewContent(mContext, (TweetAdapter.TweetViewHolder)myViewHolder, mTweet);
             LinearLayout ll = new LinearLayout(mContext);
             ll.setOrientation(LinearLayout.VERTICAL);
             float density = mContext.getResources().getDisplayMetrics().density;
@@ -98,27 +100,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             user_name = (TextView)itemView.findViewById(R.id.user_name);
             text = (TextView)itemView.findViewById(R.id.text);
             lastItemHint = (TextView) itemView.findViewById(R.id.last_item_hint);
-        }
-    }
-
-    public class TweetViewHolder extends RecyclerView.ViewHolder {
-        ImageView userPhoto;
-        TextView username;
-        TextView time;
-        TextView text;
-        ImageView picture;
-        ImageButton deleteBtn;
-        ImageButton commentBtn;
-
-        public TweetViewHolder(View itemView) {
-            super(itemView);
-            userPhoto = (ImageView)itemView.findViewById(R.id.user_pic_img);
-            username = (TextView)itemView.findViewById(R.id.user_name);
-            time = (TextView)itemView.findViewById(R.id.time);
-            text = (TextView)itemView.findViewById(R.id.text);
-            picture = (ImageView)itemView.findViewById(R.id.picture);
-            deleteBtn = (ImageButton) itemView.findViewById(R.id.delete_button);
-            commentBtn = (ImageButton) itemView.findViewById(R.id.comment_button);
         }
     }
 }
