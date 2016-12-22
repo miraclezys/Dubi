@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-
+        refresh();
         if (id == R.id.all_tweets) {
             if (mBlankFragment == null) {
                 mBlankFragment = new BlankFragment();
@@ -131,7 +131,9 @@ public class MainActivity extends AppCompatActivity
             }
             switchFragment(currentFragment, mBlank1Fragment);
         } else if (id == R.id.my_tweets) {
-
+            Intent intent = new Intent(this, UserInfoActivity.class);
+            intent.putExtra("user", ApiClient.gson.toJson(user));
+            startActivity(intent);
         } else if (id == R.id.nav_logout) {
             client.logout().enqueue(new Callback<BaseResponse>() {
                 @Override

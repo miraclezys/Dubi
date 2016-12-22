@@ -39,6 +39,7 @@
             app:layout_anchorGravity="bottom|end"
             android:layout_margin="16dp"
             app:srcCompat="@drawable/pen_white"
+            app:backgroundTint="?attr/colorPrimary"
             app:layout_anchor="@id/main_content"
             app:layout_behavior="cc.wo_mo.dubi.ui.ScrollAwareFABBehavior"
             />

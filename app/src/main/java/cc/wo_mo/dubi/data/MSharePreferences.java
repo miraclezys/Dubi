@@ -10,7 +10,7 @@ public class MSharePreferences {
     private SharedPreferences.Editor edit;
     private static MSharePreferences slideSharePreferences;
    
-    // 考虑线程安全 ，用饿汉模式来，饿汉式在类创建的同时就已经创建好一个静态的对象供系统使用，以后不再改变，所以是线程安全的。
+
     public static MSharePreferences getInstance(Context context) {
         if (slideSharePreferences == null) {
             synchronized (MSharePreferences.class) {
