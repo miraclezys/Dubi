@@ -91,8 +91,9 @@
                 android:layout_toRightOf="@id/sex"
                 android:orientation="horizontal"
                 android:layout_marginLeft="40dp">
+
                 <RadioButton
-                    android:id="@+id/sex_girl"
+                    android:id="@+id/girl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
@@ -100,8 +101,9 @@
                     android:text="女"
                     android:textSize="16dp"
                     android:textColor="@color/colorBlack"/>
+
                 <RadioButton
-                    android:id="@+id/sex_boy"
+                    android:id="@+id/boy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
@@ -109,7 +111,7 @@
                     android:textSize="16dp"
                     android:textColor="@color/colorBlack"/>
                 <RadioButton
-                    android:id="@+id/sex_no"
+                    android:id="@+id/unknown"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
@@ -134,7 +136,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
-                android:text="11.11"
+                android:text="1999.11.11"
                 android:textSize="16dp"
                 android:textColor="@color/colorBlack"/>
         </LinearLayout>

@@ -1,13 +1,11 @@
 package cc.wo_mo.dubi.activities;
 
 import android.os.Bundle;
-import android.provider.Telephony;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -18,7 +16,6 @@ import java.io.IOException;
 import java.util.List;
 
 import cc.wo_mo.dubi.R;
-import cc.wo_mo.dubi.TweetAdapter;
 import cc.wo_mo.dubi.data.ApiClient;
 import cc.wo_mo.dubi.data.DubiService;
 import cc.wo_mo.dubi.data.Model.Tweet;

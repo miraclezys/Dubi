@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,16 +15,24 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.IOException;
 
 import cc.wo_mo.dubi.R;
 import cc.wo_mo.dubi.data.ApiClient;
 import cc.wo_mo.dubi.data.DubiService;
 import cc.wo_mo.dubi.data.Model.BaseResponse;
+import cc.wo_mo.dubi.data.Model.User;
+import cc.wo_mo.dubi.utils.ImageUtils;
 import cc.wo_mo.dubi.utils.MSharePreferences;
+import cc.wo_mo.dubi.utils.ProcessBitmap;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,6 +44,9 @@ public class MainActivity extends AppCompatActivity
     Blank1Fragment mBlank1Fragment;
     BlankFragment currentFragment;
     FloatingActionButton mFab;
+    User user;
+    ImageView userPhoto;
+    TextView username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +74,39 @@ public class MainActivity extends AppCompatActivity
         navigationView.setItemTextColor(csl);
         navigationView.setItemIconTintList(csl);
         navigationView.getMenu().getItem(0).setChecked(true);
+        View headerView = navigationView.getHeaderView(0);
+        userPhoto = (ImageView) headerView.findViewById(R.id.user_pic_img);
+        username = (TextView) headerView.findViewById(R.id.user_name);
+        refresh();
+    }
+
+    private void refresh() {
+        ApiClient.getClient(this).getUserInfo(ApiClient.user_id).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.code() == 200) {
+                    user = response.body();
+                    username.setText(user.username);
+                    if (user.photo_url != null) {
+                        ImageUtils.with(MainActivity.this)
+                                .load(ApiClient.BASE_URL+user.photo_url)
+                                .transform(new ProcessBitmap(ProcessBitmap.MODE_CIRCLE, 200, null))
+                                .into(userPhoto);
+                    }
+                } else {
+                    try {
+                        Log.d("error", response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override

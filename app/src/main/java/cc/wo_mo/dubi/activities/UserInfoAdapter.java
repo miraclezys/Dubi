@@ -1,21 +1,26 @@
 package cc.wo_mo.dubi.activities;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.List;
 
 import cc.wo_mo.dubi.R;
-import cc.wo_mo.dubi.TweetAdapter;
-import cc.wo_mo.dubi.data.Model.Comment;
+import cc.wo_mo.dubi.data.ApiClient;
+import cc.wo_mo.dubi.data.Model.BaseResponse;
 import cc.wo_mo.dubi.data.Model.Tweet;
 import cc.wo_mo.dubi.data.Model.User;
-import cc.wo_mo.dubi.utils.TimeTool;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by womo on 2016/12/22.
@@ -50,7 +55,7 @@ public class UserInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder myViewHolder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder myViewHolder, final int position) {
         if (position == 0) {
             InfomationViewHolder infoHolder = (InfomationViewHolder)myViewHolder;
             infoHolder.birth.setText(mUser.birth);
@@ -60,10 +65,54 @@ public class UserInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else {
             TweetAdapter.setViewContent(mContext,
                     (TweetAdapter.TweetViewHolder)myViewHolder, mTweets.get(position-1));
+            if (mUser.user_id == ApiClient.user_id) {
+                ((TweetAdapter.TweetViewHolder)myViewHolder).deleteBtn.setVisibility(View.VISIBLE);
+                ((TweetAdapter.TweetViewHolder)myViewHolder).deleteBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        new AlertDialog.Builder(mContext)
+                                .setTitle("是否删除？")
+                                .setNegativeButton("取消", null)
+                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        deleteItem(position-1);
+                                    }
+                                }).create().show();
+                    }
+                });
+            } else {
+                ((TweetAdapter.TweetViewHolder)myViewHolder).deleteBtn.setVisibility(View.INVISIBLE);
+            }
 
         }
     }
 
+    private void deleteItem(final int position) {
+        ApiClient.getClient(mContext).deleteTweet(ApiClient.user_id, mTweets.get(position).tweet_id)
+                .enqueue(new Callback<BaseResponse>() {
+                             @Override
+                             public void onResponse(Call<BaseResponse> call,
+                                                    Response<BaseResponse> response) {
+                                 if (response.code() == 200) {
+                                     mTweets.remove(position);
+                                     notifyDataSetChanged();
+                                 } else {
+                                     try {
+                                         Log.d("error in delete", response.errorBody().string());
+                                     } catch (IOException e) {
+                                         e.printStackTrace();
+                                     }
+                                 }
+                             }
+
+                             @Override
+                             public void onFailure(Call<BaseResponse> call, Throwable t) {
+                                 t.printStackTrace();
+                             }
+                         }
+                );
+    }
 
 
     @Override

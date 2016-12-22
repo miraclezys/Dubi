@@ -85,7 +85,6 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
             follwButton.setVisibility(View.GONE);
         } else {
             editButton.setVisibility(View.GONE);
-            updateViews();
         }
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager =
@@ -103,6 +102,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.code() == 200) {
                     user = response.body();
+                    updateViews();
                     if (user.photo_url != null) {
                         ImageUtils.with(UserInfoActivity.this)
                                 .load(ApiClient.BASE_URL+user.photo_url)
@@ -126,7 +126,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
-        ApiClient.getClient(this).listUserTweets(ApiClient.user_id, -1, 100)
+        ApiClient.getClient(this).listUserTweets(user.user_id, -1, 100)
                 .enqueue(new Callback<List<Tweet>>() {
                     @Override
                     public void onResponse(Call<List<Tweet>> call, Response<List<Tweet>> response) {
@@ -223,10 +223,16 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
             case R.id.edit_button:
                 Intent intent  = new Intent(this, EditInfoActivity.class);
                 intent.putExtra("user", ApiClient.gson.toJson(user));
-                startActivity(intent);
+                startActivityForResult(intent, 0);
                 break;
             case R.id.return_button:
                 finish();
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        refresh();
     }
 }
