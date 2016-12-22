@@ -1,6 +1,7 @@
 package cc.wo_mo.dubi.activities;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -9,19 +10,22 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import java.io.IOException;
 import java.util.List;
 
 import cc.wo_mo.dubi.R;
-import cc.wo_mo.dubi.TweetAdapter;
 import cc.wo_mo.dubi.data.ApiClient;
 import cc.wo_mo.dubi.data.Model.BaseResponse;
 import cc.wo_mo.dubi.data.Model.Tweet;
 import cc.wo_mo.dubi.data.Model.User;
+import cc.wo_mo.dubi.utils.ImageUtils;
+import cc.wo_mo.dubi.utils.ProcessBitmap;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,10 +41,10 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     Button editButton;
     Button returnButton;
     User user;
+    UserInfoAdapter mAdapter;
     CollapsingToolbarLayout mCollapsingToolbarLayout;
-    LinearLayoutManager layoutManager;
+    ImageView userPhoto;
     int lastVisiblePosition;
-    TweetAdapter mAdapter;
     List<Tweet> data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,19 +52,29 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.user_information);
         user = ApiClient.gson.fromJson(getIntent().getStringExtra("user"), User.class);
         initViews();
+        mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh_layout);
+        mSwipeRefreshLayout.setProgressViewOffset(false, 0,
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24,
+                        getResources().getDisplayMetrics()));
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+        });
         refresh();
-//        Resources resource=(Resources)getBaseContext().getResources();
-//        ColorStateList csl=(ColorStateList)resource.getColorStateList(R.color.colorToolBar);
-
-//        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
     }
 
     private void initViews() {
         Toolbar mToolbar = (Toolbar)findViewById(R.id.toolbar);
-        mToolbar.setTitle("");
         CollapsingToolbarLayout cl = (CollapsingToolbarLayout)findViewById(R.id.collapsing);
         cl.setTitle(user.username);
+        userPhoto = (ImageView) findViewById(R.id.user_pic_img);
+        if (user.photo_url != null) {
+            ImageUtils.with(this).load(ApiClient.BASE_URL+user.photo_url)
+                    .transform(new ProcessBitmap(ProcessBitmap.MODE_CIRCLE, 200, null))
+                    .into(userPhoto);
+        }
         follwButton = (Button) findViewById(R.id.follow_button);
         editButton = (Button) findViewById(R.id.edit_button);
         returnButton = (Button) findViewById(R.id.return_button);
@@ -71,18 +85,36 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
             follwButton.setVisibility(View.GONE);
         } else {
             editButton.setVisibility(View.GONE);
+            updateViews();
         }
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        LinearLayoutManager layoutManager =
+                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mAdapter = new UserInfoAdapter(this, null, user);
+        mRecyclerView.setAdapter(mAdapter);
+
     }
 
     private void refresh() {
+        mSwipeRefreshLayout.setRefreshing(true);
         ApiClient.getClient(this).getUserInfo(user.user_id).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.code() == 200) {
                     user = response.body();
+                    if (user.photo_url != null) {
+                        ImageUtils.with(UserInfoActivity.this)
+                                .load(ApiClient.BASE_URL+user.photo_url)
+                                .transform(new ProcessBitmap(ProcessBitmap.MODE_CIRCLE, 200, null))
+                                .into(userPhoto);
+                    }
+                    mAdapter.refreshUser(user);
+                    mSwipeRefreshLayout.setRefreshing(false);
                 } else {
                     try {
                         Log.d("response",response.errorBody().string());
+                        mSwipeRefreshLayout.setRefreshing(false);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -93,6 +125,29 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 t.printStackTrace();
             }
         });
+
+        ApiClient.getClient(this).listUserTweets(ApiClient.user_id, -1, 100)
+                .enqueue(new Callback<List<Tweet>>() {
+                    @Override
+                    public void onResponse(Call<List<Tweet>> call, Response<List<Tweet>> response) {
+                        if (response.code() == 200) {
+                            mAdapter.refreshTweets(response.body());
+                            mSwipeRefreshLayout.setRefreshing(false);
+                        } else {
+                            try {
+                                Log.d("response",response.errorBody().string());
+                                mSwipeRefreshLayout.setRefreshing(false);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call call, Throwable t) {
+                        t.printStackTrace();
+                    }
+                });
     }
 
     private void updateViews() {
@@ -101,7 +156,6 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         } else {
             follwButton.setText("关注");
         }
-        // Todo: 更新其他信息
     }
 
     @Override

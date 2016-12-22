@@ -57,7 +57,7 @@ public class XmlParserHandler extends DefaultHandler{
     @Override
     public void endElement(String uri, String localName, String qName)
                             throws SAXException{
-        System.out.println("!!! "+qName);
+       // System.out.println("!!! "+qName);
         if(qName.equals("Region")){
             CityModel.getRegionList().add(RegionModel);
         }

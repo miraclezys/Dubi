@@ -84,6 +84,14 @@ public class TweetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public static void setViewContent(final Context context, TweetViewHolder holder, final Tweet tweet) {
         holder.username.setText(tweet.user.username);
+        if (tweet.user.photo_url != null) {
+            ImageUtils.with(context)
+                    .load(ApiClient.BASE_URL+tweet.user.photo_url)
+                    .transform(new ProcessBitmap(ProcessBitmap.MODE_CIRCLE, 200, null))
+                    .into(holder.userPhoto);
+        } else {
+            holder.userPhoto.setImageResource(R.mipmap.touxiang1);
+        }
         holder.text.setText(tweet.description);
         holder.time.setText(TimeTool.getStandardTime(tweet.time));
         if (tweet.image_url != null) {

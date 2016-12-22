@@ -10,37 +10,42 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
         android:text="选择省份"
         android:textSize="18dp" />
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
+        android:divider="@null"
         android:layout_height="300dp">
     </ListView>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
         <Button
             android:id="@+id/sure_button"
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:layout_height="30dp"
             android:background="@mipmap/touming"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="8dp"
+            android:layout_marginRight="16dp"
             android:text="保存修改"
+            android:textSize="16dp"
             android:textColor="@color/colorAccent"/>
         <Button
             android:id="@+id/cancel_button"
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:layout_height="30dp"
             android:background="@mipmap/touming"
             android:layout_toLeftOf="@id/sure_button"
             android:layout_marginRight="16dp"
             android:text="放弃修改"
+            android:textSize="16dp"
             android:textColor="@color/colorAccent"/>
     </RelativeLayout>
 

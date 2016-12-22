@@ -17,7 +17,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:title="Sunny"
             app:expandedTitleMarginStart="120dp"
-            app:expandedTitleMarginBottom="60dp"
+            app:expandedTitleMarginBottom="20dp"
             app:contentScrim="@color/colorStatus"
             android:background="@color/colorBackground">
             <RelativeLayout
@@ -36,9 +36,10 @@
                     app:layout_scrollFlags="scroll|exitUntilCollapsed"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@mipmap/touxiang1"
+                    android:background="@android:color/transparent"
+                    android:src="@mipmap/ic_user"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginTop="150dp"/>
+                    android:layout_marginTop="90dp"/>
             </RelativeLayout>
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -71,158 +72,19 @@
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.NestedScrollView
+    <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:background="@color/colorBackground">
-        <LinearLayout
+        android:id="@+id/swipe_refresh_layout">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="24dp"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="粉丝"
-                    android:textSize="14dp"
-                    android:textColor="@color/colorBlack"/>
-                <Button
-                    android:id="@+id/fans_num_button"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="left|center_vertical"
-                    android:text="123"
-                    android:textSize="14dp"
-                    android:textColor="@color/colorStatus"
-                    android:background="@mipmap/touming"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="关注"
-                    android:textSize="14dp"
-                    android:textColor="@color/colorBlack"/>
-                <Button
-                    android:id="@+id/focus_num_button"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="left|center_vertical"
-                    android:text="23"
-                    android:textSize="14dp"
-                    android:textColor="@color/colorStatus"
-                    android:background="@mipmap/touming"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="动态"
-                    android:textSize="14dp"
-                    android:textColor="@color/colorBlack"/>
-                <Button
-                    android:id="@+id/tweets_num_button"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="left|center_vertical"
-                    android:text="255"
-                    android:textSize="14dp"
-                    android:textColor="@color/colorStatus"
-                    android:background="@mipmap/touming"/>
-            </LinearLayout>
-            <!--合并个人信息-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="签名"
-                    android:textSize="14dp"
-                    android:textColor="@color/colorBlack"/>
-                <TextView
-                    android:id="@+id/introduction_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="77dp"
-                    android:text="爱学习爱生活"
-                    android:textSize="14dp"
-                    android:textColor="@color/colorBlack"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="性别"
-                    android:textSize="14dp"
-                    android:textColor="@color/colorBlack"/>
-                <TextView
-                    android:id="@+id/sex"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="77dp"
-                    android:text="女"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlack"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="生日"
-                    android:textSize="14dp"
-                    android:textColor="@color/colorBlack"/>
-                <TextView
-                    android:id="@+id/birth"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="77dp"
-                    android:text="11.11"
-                    android:textSize="14dp"
-                    android:textColor="@color/colorBlack"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="地区"
-                    android:textSize="14dp"
-                    android:textColor="@color/colorBlack"/>
-                <TextView
-                    android:id="@+id/area"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="77dp"
-                    android:text="广东"
-                    android:textSize="14dp"
-                    android:textColor="@color/colorBlack"/>
-            </LinearLayout>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/user_sweet_rv"
-            android:layout_width="wrap_content"
-            android:layout_height="500dp"
-            android:layout_marginTop="16dp"
             app:layoutManager="LinearLayoutManager"
             tools:context="cc.wo_mo.dubi.TweetAdapter"
             tools:listitem="@layout/tweet_item">
         </android.support.v7.widget.RecyclerView>
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 </android.support.design.widget.CoordinatorLayout>

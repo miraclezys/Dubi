@@ -123,11 +123,11 @@ public class StateAdapter extends BaseAdapter{
         if(flag){
             if(position == sharePreferences.getInt(Tools.KEY_PROVINCE, 0)
                     && defaultPosition){
-                SelectedIndex = position;
-                mViewHolder.StateItem.setChecked(true);
+              //  SelectedIndex = position;
+               // mViewHolder.StateItem.setChecked(true);
             } else {
                 if(position == 0 && defaultPosition){
-                    mViewHolder.StateItem.setChecked(true);
+                //    mViewHolder.StateItem.setChecked(true);
                 }
             }
         }
