@@ -148,6 +148,9 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
         if (user.region != null) {
             region.setText(user.region);
         }
+        if (user.introduction != null) {
+            introduction.setText(user.introduction);
+        }
         if (user.birth != null) {
             birth.setText(user.birth);
         }
