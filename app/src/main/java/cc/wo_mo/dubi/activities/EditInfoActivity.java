@@ -23,11 +23,11 @@ import java.util.Calendar;
 
 import cc.wo_mo.dubi.R;
 import cc.wo_mo.dubi.data.ApiClient;
+import cc.wo_mo.dubi.data.Model.Tools;
 import cc.wo_mo.dubi.data.Model.User;
 import cc.wo_mo.dubi.utils.ImageUtils;
 import cc.wo_mo.dubi.utils.ProcessBitmap;
 import cc.wo_mo.dubi.utils.UploadTarget;
-import cc.wo_mo.dubi.data.Model.Tools;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -131,6 +131,7 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
             }
         });
     }
+
 
     @Override
     public void onClick(View v) {
