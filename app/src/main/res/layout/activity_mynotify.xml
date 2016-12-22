@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.MYNotifyActivity">
+    tools:context=".ui.MYNotifyActivity">
     <!--part1 标题栏-->
     <android.support.design.widget.AppBarLayout
         android:id="@+id/notify1"
@@ -48,7 +48,7 @@
                 android:layout_marginTop="50dp"
                 tools:listitem="@layout/item_notify"
                 app:layoutManager="LinearLayoutManager"
-                tools:contex="cc.wo_mo.dubi.activities.MyNotifyAdapter"
+                tools:contex="cc.wo_mo.dubi.ui.MyNotifyAdapter"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:id="@+id/Notiftlist">
             </android.support.v7.widget.RecyclerView>

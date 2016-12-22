@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.FansActivty">
+    tools:context=".ui.FansActivty">
     <!--part1 标题栏-->
     <android.support.design.widget.AppBarLayout
         android:id="@+id/fans1"
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:listitem="@layout/item_friends"
-            tools:context="cc.wo_mo.dubi.activities.FriendsActivity"
+            tools:context="cc.wo_mo.dubi.ui.FriendsActivity"
             app:layoutManager="LinearLayoutManager"
             android:id="@+id/user_list">
         </android.support.v7.widget.RecyclerView>

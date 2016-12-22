@@ -82,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="LinearLayoutManager"
-            tools:context="cc.wo_mo.dubi.activities.TweetAdapter"
+            tools:context="cc.wo_mo.dubi.ui.TweetAdapter"
             tools:listitem="@layout/tweet_item">
         </android.support.v7.widget.RecyclerView>
     </android.support.v4.widget.SwipeRefreshLayout>

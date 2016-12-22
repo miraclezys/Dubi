@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".ui.LoginActivity"
             android:windowSoftInputMode="adjustResize"
             android:noHistory="true">
             <intent-filter>
@@ -22,30 +22,30 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.EditActivity"
+        <activity android:name=".ui.EditActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
         </activity>
-        <activity android:name=".activities.MYNotifyActivity"
+        <activity android:name=".ui.MYNotifyActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".activities.UserInfoActivity"
+        <activity android:name=".ui.UserInfoActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".activities.ImageActivity"
+        <activity android:name=".ui.ImageActivity"
             android:theme="@style/AppTheme.FullScreen">
         </activity>
-        <activity android:name=".activities.FansActivty">
+        <activity android:name=".ui.FansActivty">
         </activity>
-        <activity android:name=".activities.FriendsActivity">
+        <activity android:name=".ui.FriendsActivity">
         </activity>
-        <activity android:name=".activities.CommentActivity"
+        <activity android:name=".ui.CommentActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".activities.EditInfoActivity"
+        <activity android:name=".ui.EditInfoActivity"
             android:exported="true">
         </activity>
     </application>

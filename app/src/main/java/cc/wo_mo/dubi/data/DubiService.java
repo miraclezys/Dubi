@@ -1,13 +1,10 @@
 package cc.wo_mo.dubi.data;
 
-import com.google.gson.annotations.JsonAdapter;
-
 import java.util.List;
 
-import cc.wo_mo.dubi.data.Model.*;
-import cc.wo_mo.dubi.data.Model.LoginResponse;
+import cc.wo_mo.dubi.Model.*;
+import cc.wo_mo.dubi.Model.LoginResponse;
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;

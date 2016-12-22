@@ -17,7 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import cc.wo_mo.dubi.data.ApiClient;
-import cc.wo_mo.dubi.data.Model.UploadResponse;
+import cc.wo_mo.dubi.Model.UploadResponse;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;

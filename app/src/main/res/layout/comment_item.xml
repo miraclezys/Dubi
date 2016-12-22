@@ -22,7 +22,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="16dp"
-                android:background="@mipmap/touxiang1"/>
+                android:background="@mipmap/ic_user"/>
             <TextView
                 android:id="@+id/user_name"
                 android:layout_width="wrap_content"
