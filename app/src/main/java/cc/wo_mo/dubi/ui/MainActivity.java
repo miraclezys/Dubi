@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity
     User user;
     ImageView userPhoto;
     TextView username;
+    Button searchButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +77,14 @@ public class MainActivity extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
         userPhoto = (ImageView) headerView.findViewById(R.id.user_pic_img);
         username = (TextView) headerView.findViewById(R.id.user_name);
+        searchButton = (Button)findViewById(R.id.search_button);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
         refresh();
     }
 
