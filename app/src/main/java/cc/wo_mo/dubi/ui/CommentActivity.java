@@ -1,5 +1,6 @@
 package cc.wo_mo.dubi.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -41,7 +42,7 @@ public class CommentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comment_layout);
-
+        Log.d("fuck", getIntent().getStringExtra("tweet"));
         tweet = ApiClient.gson.fromJson(getIntent().getStringExtra("tweet"), Tweet.class);
         init();
         mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh_layout);
@@ -94,6 +95,12 @@ public class CommentActivity extends AppCompatActivity {
         mEditText.getText().clear();
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainActivity.class));
+        super.onBackPressed();
+    }
+
     private void init() {
         mRecyclerView = (RecyclerView)findViewById(R.id.comment_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -107,7 +114,7 @@ public class CommentActivity extends AppCompatActivity {
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                onBackPressed();
             }
         });
 

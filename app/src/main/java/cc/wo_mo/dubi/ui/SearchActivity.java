@@ -1,8 +1,10 @@
 package cc.wo_mo.dubi.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import cc.wo_mo.dubi.R;
 
@@ -33,7 +35,9 @@ public class SearchActivity extends AppCompatActivity {
             }
         });*/
 
-
+        Intent intent = new Intent(SearchActivity.this, CommentActivity.class);
+        intent.putExtra("tweet", "sfdsfsf");
+        Log.d("intent", intent.toUri(Intent.URI_INTENT_SCHEME));
         TabLayout mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
         mTabLayout.addTab(mTabLayout.newTab().setText("TabOne"));//给TabLayout添加Tab
         mTabLayout.addTab(mTabLayout.newTab().setText("TabTwo"));

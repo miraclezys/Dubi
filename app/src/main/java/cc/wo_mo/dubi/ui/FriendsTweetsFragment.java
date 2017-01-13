@@ -11,7 +11,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Blank1Fragment extends BlankFragment {
+public class FriendsTweetsFragment extends AllTweetsFragment {
     @Override
     void getData() {
         mSwipeRefreshLayout.setRefreshing(true);

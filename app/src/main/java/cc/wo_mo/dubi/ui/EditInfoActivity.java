@@ -153,6 +153,7 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
         }
         if (user.birth != null) {
             birth.setText(user.birth);
+            birthStr = user.birth;
         }
     }
 

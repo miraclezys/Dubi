@@ -17,10 +17,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.xiaomi.mipush.sdk.MiPushClient;
 
 import java.io.IOException;
 
@@ -39,14 +40,13 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
     DubiService client;
-    BlankFragment mBlankFragment;
-    Blank1Fragment mBlank1Fragment;
-    BlankFragment currentFragment;
+    AllTweetsFragment mAllTweetsFragment;
+    FriendsTweetsFragment mFriendsTweetsFragment;
+    AllTweetsFragment currentFragment;
     FloatingActionButton mFab;
     User user;
     ImageView userPhoto;
     TextView username;
-    Button searchButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Dubi");
         client = ApiClient.getClient(this);
-        mBlankFragment = new BlankFragment();
+        mAllTweetsFragment = new AllTweetsFragment();
         mFab = (FloatingActionButton) findViewById(R.id.edit_fab);
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity
         });
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.main_content, mBlankFragment).commit();
-        currentFragment = mBlankFragment;
+        transaction.replace(R.id.main_content, mAllTweetsFragment).commit();
+        currentFragment = mAllTweetsFragment;
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         Resources resource=(Resources)getBaseContext().getResources();
@@ -77,14 +77,12 @@ public class MainActivity extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
         userPhoto = (ImageView) headerView.findViewById(R.id.user_pic_img);
         username = (TextView) headerView.findViewById(R.id.user_name);
-        searchButton = (Button)findViewById(R.id.search_button);
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                startActivity(intent);
-            }
-        });
+        refresh();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         refresh();
     }
 
@@ -130,16 +128,16 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         refresh();
         if (id == R.id.all_tweets) {
-            if (mBlankFragment == null) {
-                mBlankFragment = new BlankFragment();
+            if (mAllTweetsFragment == null) {
+                mAllTweetsFragment = new AllTweetsFragment();
             }
-            switchFragment(currentFragment, mBlankFragment);
+            switchFragment(currentFragment, mAllTweetsFragment);
 
         } else if (id == R.id.friend_tweets) {
-            if (mBlank1Fragment == null) {
-                mBlank1Fragment = new Blank1Fragment();
+            if (mFriendsTweetsFragment == null) {
+                mFriendsTweetsFragment = new FriendsTweetsFragment();
             }
-            switchFragment(currentFragment, mBlank1Fragment);
+            switchFragment(currentFragment, mFriendsTweetsFragment);
         } else if (id == R.id.my_tweets) {
             Intent intent = new Intent(this, UserInfoActivity.class);
             intent.putExtra("user", ApiClient.gson.toJson(user));
@@ -149,6 +147,7 @@ public class MainActivity extends AppCompatActivity
                 @Override
                 public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                     if (response.code() == 200) {
+                        MiPushClient.unsetUserAccount(MainActivity.this, ""+ ApiClient.user_id, null);
                         showToast("注销成功");
                         MSharePreferences.getInstance(MainActivity.this)
                                 .putBoolean("isLogin", false);
@@ -173,7 +172,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     void switchFragment(Fragment from, Fragment to) {
-        currentFragment = (BlankFragment) to;
+        currentFragment = (AllTweetsFragment) to;
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         if (!to.isAdded()) {

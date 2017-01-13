@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.xiaomi.mipush.sdk.MiPushClient;
+
 import java.io.IOException;
 
 import cc.wo_mo.dubi.R;
@@ -94,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                                 mSharePreferences.putBoolean("isLogin", true);
                                 mSharePreferences.putString("token", res.token);
                                 mSharePreferences.putInt("user_id", res.user_id);
+                                MiPushClient.setUserAccount(LoginActivity.this, ""+res.user_id, null);
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             }
                         }

@@ -23,6 +23,7 @@ public class ApiClient {
     private static final String PICASSO_CACHE = "picasso-cache";//缓存图片的存放文件夹名
     private static final int MAX_DISK_CACHE_SIZE = 50 * 1024 * 1024; //50M缓存大小
     public final static String BASE_URL = "http://dubi.wo-mo.cc";
+//    public final static String BASE_URL = "http://192.168.191.1:5000";
     public static String token = "";
     public static int user_id = 0;
     private static DubiService instance = null;
@@ -41,6 +42,8 @@ public class ApiClient {
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
                     instance = retrofit.create(DubiService.class);
+                    token = MSharePreferences.getInstance(context).getString("token", "");
+                    user_id = MSharePreferences.getInstance(context).getInt("user_id", 0);
                 }
             }
         }
