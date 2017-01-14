@@ -56,7 +56,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".MessageReceiver"
+            android:name=".data.MessageReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE" />

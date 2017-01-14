@@ -1,4 +1,4 @@
-package cc.wo_mo.dubi.Model;
+package cc.wo_mo.dubi.utils;
 
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -7,16 +7,20 @@ import org.xml.sax.Attributes;
 import java.util.ArrayList;
 import java.util.List;
 
+import cc.wo_mo.dubi.Model.CityModel;
+import cc.wo_mo.dubi.Model.RegionModel;
+import cc.wo_mo.dubi.Model.StateModel;
+
 /**
  * Created by shushu on 2016/12/21.
  */
 
 public class XmlParserHandler extends DefaultHandler{
-    private List<StateModel> StateList = new ArrayList<StateModel>();
+    private List<cc.wo_mo.dubi.Model.StateModel> StateList = new ArrayList<StateModel>();
 
     StateModel StateModel = new StateModel();
-    CityModel CityModel = new CityModel();
-    RegionModel RegionModel = new RegionModel();
+    cc.wo_mo.dubi.Model.CityModel CityModel = new CityModel();
+    cc.wo_mo.dubi.Model.RegionModel RegionModel = new RegionModel();
 
     public XmlParserHandler(){
 

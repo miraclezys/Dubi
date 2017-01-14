@@ -1,4 +1,4 @@
-package cc.wo_mo.dubi.Model;
+package cc.wo_mo.dubi.utils;
 
 /**
  * Created by shushu on 2016/12/21.

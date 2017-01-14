@@ -5,8 +5,6 @@ import android.content.Context;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
-import cc.wo_mo.dubi.data.ApiClient;
-
 /**
  * Created by womo on 2016/12/14.
  */

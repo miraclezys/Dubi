@@ -15,7 +15,7 @@ import java.util.List;
 import cc.wo_mo.dubi.R;
 import cc.wo_mo.dubi.Model.CityModel;
 import cc.wo_mo.dubi.Model.StateModel;
-import cc.wo_mo.dubi.Model.Tools;
+import cc.wo_mo.dubi.utils.Tools;
 
 
 /**

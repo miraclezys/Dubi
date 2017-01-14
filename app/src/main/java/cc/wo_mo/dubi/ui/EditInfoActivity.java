@@ -21,8 +21,8 @@ import java.io.IOException;
 import java.util.Calendar;
 
 import cc.wo_mo.dubi.R;
-import cc.wo_mo.dubi.data.ApiClient;
-import cc.wo_mo.dubi.Model.Tools;
+import cc.wo_mo.dubi.utils.ApiClient;
+import cc.wo_mo.dubi.utils.Tools;
 import cc.wo_mo.dubi.Model.User;
 import cc.wo_mo.dubi.utils.ImageUtils;
 import cc.wo_mo.dubi.utils.ProcessBitmap;

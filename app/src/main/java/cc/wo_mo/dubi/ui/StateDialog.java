@@ -23,8 +23,8 @@ import javax.xml.parsers.SAXParserFactory;
 
 import cc.wo_mo.dubi.R;
 import cc.wo_mo.dubi.Model.StateModel;
-import cc.wo_mo.dubi.Model.Tools;
-import cc.wo_mo.dubi.Model.XmlParserHandler;
+import cc.wo_mo.dubi.utils.Tools;
+import cc.wo_mo.dubi.utils.XmlParserHandler;
 
 /**
  * Created by shushu on 2016/12/21.

@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.List;
 
 import cc.wo_mo.dubi.R;
-import cc.wo_mo.dubi.data.ApiClient;
+import cc.wo_mo.dubi.utils.ApiClient;
 import cc.wo_mo.dubi.Model.BaseResponse;
 import cc.wo_mo.dubi.Model.Tweet;
 import cc.wo_mo.dubi.Model.User;
