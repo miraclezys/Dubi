@@ -15,7 +15,7 @@ import java.util.List;
 import cc.wo_mo.dubi.R;
 import cc.wo_mo.dubi.Model.CityModel;
 import cc.wo_mo.dubi.Model.StateModel;
-import cc.wo_mo.dubi.utils.Tools;
+import cc.wo_mo.dubi.utils.DoubleClickTool;
 
 
 /**
@@ -120,7 +120,7 @@ public class StateAdapter extends BaseAdapter{
         }
 
         if(flag){
-            if(position == sharePreferences.getInt(Tools.KEY_PROVINCE, 0)
+            if(position == sharePreferences.getInt(DoubleClickTool.KEY_PROVINCE, 0)
                     && defaultPosition){
               //  SelectedIndex = position;
                // mViewHolder.StateItem.setChecked(true);

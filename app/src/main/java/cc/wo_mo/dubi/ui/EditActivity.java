@@ -16,11 +16,11 @@ import android.widget.Toast;
 
 
 import cc.wo_mo.dubi.R;
-import cc.wo_mo.dubi.utils.ApiClient;
+import cc.wo_mo.dubi.data.ApiClient;
 import cc.wo_mo.dubi.Model.Tweet;
 import cc.wo_mo.dubi.utils.ImageUtils;
 import cc.wo_mo.dubi.utils.ProcessBitmap;
-import cc.wo_mo.dubi.utils.UploadTarget;
+import cc.wo_mo.dubi.data.UploadTarget;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

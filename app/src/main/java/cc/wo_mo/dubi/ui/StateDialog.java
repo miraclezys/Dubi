@@ -23,7 +23,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 import cc.wo_mo.dubi.R;
 import cc.wo_mo.dubi.Model.StateModel;
-import cc.wo_mo.dubi.utils.Tools;
+import cc.wo_mo.dubi.utils.DoubleClickTool;
 import cc.wo_mo.dubi.utils.XmlParserHandler;
 
 /**
@@ -82,7 +82,7 @@ public class StateDialog extends Dialog implements
         mTitle.setText("选择省份");
         mStateAdapter = new StateAdapter(getContext(), States);
         StateListView.setAdapter(mStateAdapter);
-        StateListView.setSelection(mSharePreferences.getInt(Tools.KEY_PROVINCE,0));
+        StateListView.setSelection(mSharePreferences.getInt(DoubleClickTool.KEY_PROVINCE,0));
         isCity = true;
     }
 
@@ -113,7 +113,7 @@ public class StateDialog extends Dialog implements
                 }
                 else{
                     City = States.get(StatePosition).getCityList().get(mCityAdapter.getSelectedIndex()).getName();
-                    mSharePreferences.putInt(Tools.KEY_PROVINCE, StatePosition);
+                    mSharePreferences.putInt(DoubleClickTool.KEY_PROVINCE, StatePosition);
                     mLister.onStateSelect(State, City);
                     dismiss();
                 }

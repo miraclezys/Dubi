@@ -4,7 +4,7 @@ package cc.wo_mo.dubi.utils;
  * Created by shushu on 2016/12/21.
  */
 
-public class Tools {
+public class DoubleClickTool {
     public static long LastClickTime;
     public static final String KEY_PROVINCE = "PROVINCE";
     public static final String KEY_CITY = "CITY";

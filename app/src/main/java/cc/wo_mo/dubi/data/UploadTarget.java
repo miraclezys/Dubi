@@ -1,4 +1,4 @@
-package cc.wo_mo.dubi.utils;
+package cc.wo_mo.dubi.data;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import cc.wo_mo.dubi.Model.UploadResponse;
+import cc.wo_mo.dubi.data.ApiClient;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;

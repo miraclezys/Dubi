@@ -21,12 +21,12 @@ import java.io.IOException;
 import java.util.Calendar;
 
 import cc.wo_mo.dubi.R;
-import cc.wo_mo.dubi.utils.ApiClient;
-import cc.wo_mo.dubi.utils.Tools;
+import cc.wo_mo.dubi.data.ApiClient;
+import cc.wo_mo.dubi.utils.DoubleClickTool;
 import cc.wo_mo.dubi.Model.User;
 import cc.wo_mo.dubi.utils.ImageUtils;
 import cc.wo_mo.dubi.utils.ProcessBitmap;
-import cc.wo_mo.dubi.utils.UploadTarget;
+import cc.wo_mo.dubi.data.UploadTarget;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -121,7 +121,7 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onClick(View view) {
                 Toast.makeText(EditInfoActivity.this,"点击地区",Toast.LENGTH_SHORT);
-                if(!Tools.isFastDoubeClick()){
+                if(!DoubleClickTool.isFastDoubeClick()){
                     new StateDialog(EditInfoActivity.this, R.style.testDialog, new StateDialog.OnStateSelectListener(){
                         @Override
                         public void onStateSelect(String State, String City){

@@ -19,7 +19,6 @@ import java.util.List;
 import cc.wo_mo.dubi.Model.Comment;
 import cc.wo_mo.dubi.MyApplication;
 import cc.wo_mo.dubi.R;
-import cc.wo_mo.dubi.utils.ApiClient;
 
 /**
  * 1、PushMessageReceiver 是个抽象类，该类继承了 BroadcastReceiver。<br/>

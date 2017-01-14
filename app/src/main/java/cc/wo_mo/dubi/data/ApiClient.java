@@ -1,4 +1,4 @@
-package cc.wo_mo.dubi.utils;
+package cc.wo_mo.dubi.data;
 
 import android.content.Context;
 
@@ -8,8 +8,6 @@ import com.google.gson.GsonBuilder;
 import java.io.File;
 import java.io.IOException;
 
-import cc.wo_mo.dubi.data.DubiService;
-import cc.wo_mo.dubi.data.MSharePreferences;
 import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
